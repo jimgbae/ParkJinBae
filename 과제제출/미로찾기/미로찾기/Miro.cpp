@@ -1,7 +1,6 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
-#include<string>
 using namespace std;
 #define WIDTH 10
 #define HEIGHT 10
@@ -17,16 +16,17 @@ void main()
 {
 	vector< vector<int> > arr({
 		vector<int>({ 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 }),
-		vector<int>({ 1, 2, 1, 0, 0, 1, 0, 0, 0, 1 }),
-		vector<int>({ 1, 0, 1, 1, 0, 0, 0, 1, 0, 1 }),
-		vector<int>({ 1, 0, 1, 1, 1, 1, 1, 1, 0, 1 }),
+		vector<int>({ 1, 2, 1, 0, 0, 0, 0, 1, 0, 1 }),
+		vector<int>({ 1, 0, 1, 1, 0, 1, 0, 0, 0, 1 }),
+		vector<int>({ 1, 0, 0, 1, 1, 0, 1, 1, 0, 1 }),
 		vector<int>({ 1, 0, 1, 0, 0, 0, 1, 0, 0, 1 }),
 		vector<int>({ 1, 0, 1, 0, 1, 0, 1, 0, 1, 1 }),
-		vector<int>({ 1, 0, 1, 0, 1, 0, 1, 0, 0, 1 }),
+		vector<int>({ 1, 0, 0, 0, 1, 0, 1, 0, 0, 1 }),
 		vector<int>({ 1, 0, 1, 0, 1, 0, 1, 1, 0, 1 }),
-		vector<int>({ 1, 0, 0, 0, 1, 0, 0, 0, 0, 1 }),
+		vector<int>({ 1, 0, 1, 0, 1, 0, 0, 0, 0, 1 }),
 		vector<int>({ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }),
 	});
+
 	for (int y = 0; y < HEIGHT; y++)
 	{
 		for (int x = 0; x < WIDTH; x++)
