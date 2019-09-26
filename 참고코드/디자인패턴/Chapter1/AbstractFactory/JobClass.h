@@ -31,3 +31,9 @@ class Wizard : public JobClass
 public:
 	virtual bool EquipCheck();
 };
+
+class Thief : public JobClass
+{
+public:
+	virtual bool EquipCheck();
+};

@@ -49,3 +49,16 @@ bool Wizard::EquipCheck()
 
 	return staff->Attack();
 }
+
+/* Thief*/
+bool Thief::EquipCheck()
+{
+	Sword* sword = dynamic_cast<Sword*>(GetWeapon());
+
+	if (sword == NULL)
+		return false;
+
+	cout << "°Ë Âø¿ë!" << endl;
+
+	return sword->Attack();
+}

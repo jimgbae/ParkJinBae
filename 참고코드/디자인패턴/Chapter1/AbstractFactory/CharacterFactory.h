@@ -41,3 +41,10 @@ public:
 	virtual JobClass* CreateJobClass();
 };
 
+class ThiefCharacter : public CharacterFactory
+{
+public:
+	virtual Weapon * CreateWeapon();
+	virtual JobClass * CreateJobClass();
+};
+

@@ -1,6 +1,2 @@
-﻿  CharacterFactory.cpp
-  JobClass.cpp
-  main.cpp
-  Weapon.cpp
-  코드를 생성하고 있습니다...
-  AbstractFactory.vcxproj -> F:\강의자료\자료구조와알고리즘\강의용코드\Chapter23\Debug\AbstractFactory.exe
+﻿  TypeClass.cpp
+  AbstractFactory.vcxproj -> C:\work\박진배\ParkJinBae\참고코드\디자인패턴\Chapter1\AbstractFactory\Debug\AbstractFactory.exe

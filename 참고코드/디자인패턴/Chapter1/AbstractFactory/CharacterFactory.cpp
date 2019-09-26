@@ -49,3 +49,13 @@ JobClass * WizardCharacter::CreateJobClass()
 	return new Wizard();
 }
 
+/* Thief Character*/
+Weapon * ThiefCharacter::CreateWeapon()
+{
+	return new Sword;
+}
+
+JobClass* ThiefCharacter::CreateJobClass()
+{
+	return new Thief;
+}
