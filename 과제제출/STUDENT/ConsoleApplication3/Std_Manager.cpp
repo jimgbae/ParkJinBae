@@ -107,20 +107,12 @@ void Std_Manager::findname()
 
 void Std_Manager::findClass()
 {
-	int _find = 0, _class = 0;
-	while (_class != 5)
+	int _find = 0;
+	char chClass = 'A';
+	while (chClass != 'G')
 	{
-		char chClass;
-		if (_class == 0)
-			chClass = 'A';
-		else if (_class == 1)
-			chClass = 'B';
-		else if (_class == 2)
-			chClass = 'C';
-		else if (_class == 3)
-			chClass = 'D';
-		else
-			chClass = 'F';
+		if (chClass == 'E')
+			chClass++;
 		cout << "========= [ " << chClass << " ] =========" << endl;
 		for (auto iter = m_vecStudentList.begin(); iter != m_vecStudentList.end(); iter++)
 		{
@@ -133,7 +125,7 @@ void Std_Manager::findClass()
 		cout << "รั " << _find << "ธํ" << endl;
 		cout << "=========================" << endl;
 		_find = 0;
-		_class++;
+		chClass++;
 	}
 }
 
