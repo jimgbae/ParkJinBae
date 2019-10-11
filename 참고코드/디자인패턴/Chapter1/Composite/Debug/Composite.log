@@ -1,5 +1,4 @@
-﻿  Inventory.cpp
-  Main.cpp
-f:\강의자료\자료구조와알고리즘\강의용코드\chapter23\composite\main.cpp(4): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
-  코드를 생성하고 있습니다...
-  Composite.vcxproj -> F:\강의자료\자료구조와알고리즘\강의용코드\Chapter23\Debug\Composite.exe
+﻿  Main.cpp
+c:\work\박진배\parkjinbae\참고코드\디자인패턴\chapter1\composite\main.cpp(5): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+c:\work\박진배\parkjinbae\참고코드\디자인패턴\chapter1\composite\main.cpp(69): error C2360: 'stritem' 초기화가 'case' 레이블에 의해 생략되었습니다.
+  c:\work\박진배\parkjinbae\참고코드\디자인패턴\chapter1\composite\main.cpp(67): note: 'stritem' 선언을 참조하십시오.

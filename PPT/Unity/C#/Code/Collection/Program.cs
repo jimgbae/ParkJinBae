@@ -115,26 +115,26 @@ namespace Collection
             //}
 
             //Dictionary<T>
-            //Dictionary<string, string> dt
-            //    = new Dictionary<string, string>();
+            Dictionary<string, string> dt
+                = new Dictionary<string, string>();
 
             ////이렇게 쓰여진다는 걸 보여주기 위한.
-            //dt["Apple"] = "사과";
-            //dt["Banana"] = "바나나";
-            //dt["Orange"] = "오렌지";
-            //dt["Strawberry"] = "딸기";
-            //dt["Grape"] = "포도";
+            dt["Apple"] = "사과";
+            dt["Banana"] = "바나나";
+            dt["Orange"] = "오렌지";
+            dt["Strawberry"] = "딸기";
+            dt["Grape"] = "포도";
 
-            //Console.WriteLine("Apple : " + dt["Apple"]);
-            //Console.WriteLine("Apple : " + dt["Banana"]);
-            //Console.WriteLine("Apple : " + dt["Orange"]);
+            Console.WriteLine("Apple : " + dt["Apple"]);
+            Console.WriteLine("Apple : " + dt["Banana"]);
+            Console.WriteLine("Apple : " + dt["Orange"]);
 
             ////실제 쓰임.
             ////foreach
-            //foreach (KeyValuePair<string, string> each in dt)
-            //{
-            //    Console.WriteLine("{0} : {1}", each.Key, each.Value);
-            //}
+            foreach (KeyValuePair<string, string> each in dt)
+            {
+                Console.WriteLine("{0} : {1}", each.Key, each.Value);
+            }
 
             ////for(키값이 필요 없을때)
             //IEnumerator em = dt.GetEnumerator();
@@ -148,24 +148,23 @@ namespace Collection
 
             Dictionary<string, User> userDic = new Dictionary<string, User>();
 
-            User user = new User("Soul", 1, 1, 1);
+            User user = new User("Soul", 7, 7, 1);
             userDic.Add(user.name, user);
 
             User user1 = new User("Seek", 2, 2, 2);
             userDic.Add(user1.name, user1);
 
-            IEnumerator em = userDic.GetEnumerator();
+            User user2 = new User("ReMee", 3, 3, 1);
+            userDic.Add(user2.name, user2);
 
-            while (em.MoveNext())
+            User user3 = new User("KimReMee", 5, 3, 10);
+            userDic.Add(user3.name, user3);
+
+            foreach (KeyValuePair<string, User> a in userDic)
             {
-                KeyValuePair<string, User> pair = (KeyValuePair<string, User>)em.Current;
-
-                User us = pair.Value;
-
-                Console.WriteLine("Name : {0}, Level : {1}, HP : {2}, EXP : {3}"
-                                , us.name, us.level, us.hp, us.exp);
+                User us = a.Value;
+                Console.WriteLine("Name : {0}, Level : {1}, HP : {2}, EXP : {3}", us.name, us.level, us.hp, us.exp);
             }
-
             Console.ReadKey();
             Console.ReadLine();
         }

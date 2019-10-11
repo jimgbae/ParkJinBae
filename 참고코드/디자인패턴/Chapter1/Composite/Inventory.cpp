@@ -60,6 +60,12 @@ Bag::~Bag()
 	inventoryList.clear();
 }
 
+void Bag::BagListView()
+{
+	cout << setiosflags(ios::right) << setw(GetSize());
+	cout << setfill(' ') << GetName().c_str() << " - Bag" << endl;
+}
+
 void Bag::View()
 {
 	cout << setiosflags(ios::right) << setw(GetSize());

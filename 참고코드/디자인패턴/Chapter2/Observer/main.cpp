@@ -4,6 +4,7 @@ int main()
 {
 	BossDragon* dragon = new BossDragon();
 	BossTwinHeadOrc* orc = new BossTwinHeadOrc();
+	BossQueenCobra* cobra = new BossQueenCobra();
 
 	Player* player1 = new Player("다루");
 	Player* player2 = new Player("까망");
@@ -21,8 +22,13 @@ int main()
 	//구독개체가 주제개체에게 상태를 요청한다.
 	player2->GetBossState();
 
+	player1->SetBossAlarm(cobra);
+	cobra->SpawnBoss();
+	player1->SetBossAlarm(cobra, false);
+
 	delete dragon;
 	delete orc;
+	delete cobra;
 
 	delete player1;
 	delete player2;

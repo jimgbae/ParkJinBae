@@ -46,7 +46,7 @@ namespace StringClass
             //Split
             //string s1 = "abc,d,f";
             //나눌 기준 문자.
-            //char sp = ',';
+           // char sp = ',';
 
             //Console.WriteLine(s1);
 
@@ -97,26 +97,25 @@ namespace StringClass
             //Console.WriteLine(s2.ToUpper());
 
             //Trim
-            //string s1 = "     T";
-            //Console.WriteLine(s1);
-            //Console.WriteLine(s1.Trim());
+            string s1 = "     T";
+            Console.WriteLine(s1);
+            Console.WriteLine(s1.Trim());
 
             //StringBuilder
-            StringBuilder sb = new StringBuilder();
+            //StringBuilder sb = new StringBuilder();
 
-            for(int i = 1; i < 26; i++)
-            {
-                sb.Append(i.ToString());
+            //for(char i = 'a'; i <= 'z'; i++)
+            //{
+            //    sb.Append(i.ToString());
+            //    //줄바꾸기 문자
+            //    sb.Append(System.Environment.NewLine);
+            //}
 
-                //줄바꾸기 문자
-                sb.Append(System.Environment.NewLine);
-            }
+            //string s = sb.ToString();
 
-            string s = sb.ToString();
+            //Console.WriteLine(s);
 
-            Console.WriteLine(s);
-
-            //콘솔창 유지
+            ////콘솔창 유지
             Console.ReadLine();
             Console.ReadKey();
         }

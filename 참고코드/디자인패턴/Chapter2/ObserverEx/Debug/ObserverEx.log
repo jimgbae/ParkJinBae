@@ -1,2 +1,4 @@
-﻿  DataTable.cpp
-  ObserverEx.vcxproj -> F:\강의자료\자료구조와알고리즘\강의용코드\Chapter24\Debug\ObserverEx.exe
+﻿  main.cpp
+c:\work\박진배\parkjinbae\참고코드\디자인패턴\chapter2\observerex\main.cpp(6): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+c:\work\박진배\parkjinbae\참고코드\디자인패턴\chapter2\observerex\main.cpp(30): warning C4101: 'iSelect' :참조되지 않은 지역 변수입니다.
+  ObserverEx.vcxproj -> C:\work\박진배\ParkJinBae\참고코드\디자인패턴\Chapter2\ObserverEx\Debug\ObserverEx.exe

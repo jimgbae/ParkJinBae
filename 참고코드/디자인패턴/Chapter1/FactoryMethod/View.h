@@ -16,3 +16,11 @@ public:
 	virtual ~MyView();
 	virtual void Render();
 };
+
+class OptionView : public View
+{
+public:
+	OptionView();
+	virtual ~OptionView();
+	virtual void Render();
+};

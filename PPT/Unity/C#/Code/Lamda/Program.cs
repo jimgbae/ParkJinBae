@@ -21,7 +21,7 @@ namespace Lamda
             myDelegate1 add = (a, b) => a + b;
             myDelegate2 lamda = () => Console.WriteLine("람다식");
 
-            Console.WriteLine("11 + 22 = {0}", add(11, 22));
+            Console.WriteLine("17 + 22 = {0}", add(17, 22));
 
             lamda();
 
@@ -36,7 +36,7 @@ namespace Lamda
                     Console.Write("{0}, {1}는 같다", a, b);
             };
 
-            Compare(11, 22);
+            Compare(23, 22);
 
             Console.ReadLine();
             Console.ReadKey();

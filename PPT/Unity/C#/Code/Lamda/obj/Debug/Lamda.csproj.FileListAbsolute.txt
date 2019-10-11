@@ -16,3 +16,9 @@ E:\강의자료\C#\UnityWithCSharp\Lamda\obj\Debug\Lamda.csprojAssemblyReference
 E:\강의자료\C#\UnityWithCSharp\Lamda\obj\Debug\Lamda.csproj.CoreCompileInputs.cache
 E:\강의자료\C#\UnityWithCSharp\Lamda\obj\Debug\Lamda.exe
 E:\강의자료\C#\UnityWithCSharp\Lamda\obj\Debug\Lamda.pdb
+C:\work\박진배\ParkJinBae\PPT\Unity\C#\Code\Lamda\bin\Debug\Lamda.exe
+C:\work\박진배\ParkJinBae\PPT\Unity\C#\Code\Lamda\bin\Debug\Lamda.pdb
+C:\work\박진배\ParkJinBae\PPT\Unity\C#\Code\Lamda\obj\Debug\Lamda.csprojAssemblyReference.cache
+C:\work\박진배\ParkJinBae\PPT\Unity\C#\Code\Lamda\obj\Debug\Lamda.csproj.CoreCompileInputs.cache
+C:\work\박진배\ParkJinBae\PPT\Unity\C#\Code\Lamda\obj\Debug\Lamda.exe
+C:\work\박진배\ParkJinBae\PPT\Unity\C#\Code\Lamda\obj\Debug\Lamda.pdb

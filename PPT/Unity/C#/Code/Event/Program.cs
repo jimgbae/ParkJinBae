@@ -36,7 +36,7 @@ namespace Event
             //이벤트에 delegate를 체인한다.
             eventManger.eventCall += new myDelegate(EventNumber);
 
-            for (int i = 1; i < 10; i++)
+            for (int i = 10; i > 0; i--)
                 eventManger.NumberCheck(i);
 
 

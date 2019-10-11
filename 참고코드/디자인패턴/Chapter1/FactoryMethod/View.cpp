@@ -12,5 +12,32 @@ MyView::~MyView()
 
 void MyView::Render()
 {
-	cout << "Render MyView" << endl;
+	for (int y = 0; y < 10; y++)
+	{
+		for (int x = 0; x < 10; x++)
+		{
+			if (y == 0 || y == 10-1)
+				cout << "бс";
+			else if (x == 0 || x == 10-1)
+				cout << "бс";
+			else
+				cout << "  ";
+		}
+		cout << endl;
+	}
+}
+
+OptionView::OptionView()
+{
+	cout << "Create Option" << endl;
+}
+
+OptionView::~OptionView()
+{
+	cout << "Delete Option" << endl;
+}
+
+void OptionView::Render()
+{
+	cout << "======Option=======" << endl;
 }

@@ -43,6 +43,7 @@ public:
 	~Bag();
 
 	void View() override;
+	void BagListView();
 	void AddInventory(Inventory* inventory) override;
 	void RemoveInventory(Inventory* inventory) override;
 };

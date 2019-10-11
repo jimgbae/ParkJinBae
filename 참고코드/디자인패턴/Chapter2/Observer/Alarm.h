@@ -93,6 +93,24 @@ public:
 	}
 };
 
+//퀸 코브라 보스 클래스
+class BossQueenCobra : public BossAlarm
+{
+public:
+	BossQueenCobra() : BossAlarm("퀸 코브라")
+	{
+		isAppear = false;
+	}
+	
+	//상태 변화를 알려줄 함수
+	void SpawnBoss()
+	{
+		isAppear = true;
+		Notification();
+	}
+};
+
+
 class Player : public Observer
 {
 	string name;
