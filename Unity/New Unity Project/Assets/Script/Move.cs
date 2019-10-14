@@ -4,31 +4,35 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    [SerializeField]
-    private float walkSpeed;
+    public static float walkSpeed;
+    public static float MoveDelta;
 
     private Rigidbody Rigid; 
 
     void Start()
     {
         Rigid = GetComponent<Rigidbody>();
+        walkSpeed = 5.0f;
     }
     
     void Update()
     {
-        PlayerMove();
+        PlayerControll();
     }
 
-    private void PlayerMove()
+    private void PlayerControll()
     {
+        MoveDelta = walkSpeed * Time.deltaTime;
+        
         float _MoveX = Input.GetAxisRaw("Horizontal");
         float _MoveZ = Input.GetAxisRaw("Vertical");
 
-        Vector3 _moveHorizontal = transform.right * _MoveX;
-        Vector3 _moveVectical = transform.forward * _MoveZ;
+        transform.Translate(Vector3.right * MoveDelta * _MoveX);
+        transform.Translate(Vector3.forward * MoveDelta * _MoveZ);
 
-        Vector3 _velocity = (_moveHorizontal + _moveVectical).normalized * walkSpeed;
-
-        Rigid.MovePosition(transform.position + _velocity * Time.deltaTime);
+        if (Input.GetKey(KeyCode.Q))
+            transform.Rotate(0, -1, 0, Space.World);
+        if (Input.GetKey(KeyCode.E))
+            transform.Rotate(0, 1, 0, Space.World);
     }
 }
