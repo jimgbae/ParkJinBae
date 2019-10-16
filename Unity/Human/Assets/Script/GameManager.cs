@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
+    public CameraMove Camera;
     public GameObject Player;
+    public GameObject Enemy;
+
+    public int EnemyNumber;
     
     void Start()
     {
-        GameObject player = GetComponent<GameObject>();
+        Player = (GameObject)Instantiate(Resources.Load("Prefab/Body")) as GameObject;
+        Player.transform.position = new Vector3(0, 2.6f, 0);
+        Camera.SetTarget(Player.transform);
     }
     
     void Update()

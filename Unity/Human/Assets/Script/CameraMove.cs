@@ -14,9 +14,14 @@ public class CameraMove : MonoBehaviour
 
     void Start()
     {
-        tr = GetComponent<Transform>();
+       tr = GetComponent<Transform>();
     }
     
+    public void SetTarget(Transform trans)
+    {
+        Body = trans;
+    }
+
     void Update()
     {
         float currYAngle = Mathf.LerpAngle(tr.eulerAngles.y, Body.eulerAngles.y, dampRotate * Time.deltaTime);
