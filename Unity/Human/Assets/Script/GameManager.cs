@@ -6,9 +6,6 @@ public class GameManager : Singleton<GameManager>
 {
     public CameraMove Camera;
     public GameObject Player;
-    public GameObject Enemy;
-
-    public int EnemyNumber;
     
     void Start()
     {

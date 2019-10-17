@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    public static bool HaveBullet = false;
+    public static bool PlayerLive = true; 
     public static float walkSpeed;
     public static float MoveDelta;
+    public Object bt;
 
     private Rigidbody Rigid; 
 
@@ -34,5 +37,12 @@ public class Move : MonoBehaviour
             transform.Rotate(0, -1, 0, Space.World);
         if (Input.GetKey(KeyCode.E))
             transform.Rotate(0, 1, 0, Space.World);
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (!HaveBullet)
+            {
+                Instantiate(bt,)
+            }
+        }
     }
 }
