@@ -14,8 +14,11 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             if (instance == null)
             {
                 instance = FindObjectOfType(typeof(T)) as T;
+
                 if (instance == null)
                     Debug.LogError("No Instance Object");
+
+               
             }
 
             return instance;

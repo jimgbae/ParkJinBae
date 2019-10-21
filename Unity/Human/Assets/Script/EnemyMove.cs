@@ -19,8 +19,7 @@ public class EnemyMove : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         MoveSpeed = 3.0f;
     }
-
-    //닿으면 Player 사라짐
+    
     private void OnCollisionEnter(Collision coll)
     {
         if (coll.collider.tag == "Bullet")

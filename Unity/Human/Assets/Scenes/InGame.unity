@@ -152,6 +152,9 @@ MonoBehaviour:
   Enemy: {fileID: 0}
   EnemySpanwCheck: 0
   EnemyNumber: 5
+  EnemyCount: 0
+  SpawnMin: -74
+  SpawnMax: 74
 --- !u!4 &514946844
 Transform:
   m_ObjectHideFlags: 0
@@ -196,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 963194229}
+  SpManager: {fileID: 514946843}
   Player: {fileID: 4963999517132919751, guid: bd1dc888b197f8b45bcb54d23a4f0c78, type: 3}
 --- !u!4 &634270987
 Transform:
@@ -490,7 +494,7 @@ Transform:
   m_GameObject: {fileID: 1958048272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalScale: {x: 30, y: 1, z: 30}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
