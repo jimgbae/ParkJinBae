@@ -18,7 +18,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                 if (instance == null)
                     Debug.LogError("No Instance Object");
 
-               
+                DontDestroyOnLoad(instance);
             }
 
             return instance;

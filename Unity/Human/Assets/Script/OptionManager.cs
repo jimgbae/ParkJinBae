@@ -6,7 +6,7 @@ using UnityEngine;
 public class OptionManager : MonoBehaviour
 {
 
-    public SpawnManager SpManager;
+    public GameManager GMManager;
     const int EasyNumber = 5;
     const int NormalNumber = 15;
     const int HardNumber = 30;
@@ -17,18 +17,23 @@ public class OptionManager : MonoBehaviour
     const float NormalMax = 111.0f;
     const float HardMax = 148.0f;
 
+    void Start()
+    {
+        GMManager = GameManager.GetInstance;
+    }
+
     public void ButtonClick(string type)
     {
         switch (type)
         {
             case "EASY":
-                SpManager.SettingDifficult(EasyNumber, EasyMin, EasyMax);
+                GMManager.SettingDifficult(EasyNumber, EasyMin, EasyMax);
                 break;
             case "NORMAL":
-                SpManager.SettingDifficult(NormalNumber, NormalMin, NormalMax);
+                GMManager.SettingDifficult(NormalNumber, NormalMin, NormalMax);
                 break;
             case "HARD":
-                SpManager.SettingDifficult(HardNumber, HardMin, HardMax);
+                GMManager.SettingDifficult(HardNumber, HardMin, HardMax);
                 break;
             case "EXIT":
                 SceneManager.LoadScene("Title");

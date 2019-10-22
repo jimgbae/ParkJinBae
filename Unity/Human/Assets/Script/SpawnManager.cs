@@ -5,12 +5,15 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
 
-    public GameObject Enemy;
     public bool EnemySpanwCheck = false;
     public int EnemyNumber = 5;
     public int EnemyCount = 0;
     public float SpawnMin = -74.0f;
     public float SpawnMax = 74.0f;
+
+    void Start()
+    {
+    }
     
 
     public void SettingDifficult(int Number, float Min, float Max)
@@ -18,6 +21,15 @@ public class SpawnManager : MonoBehaviour
         EnemyNumber = Number;
         SpawnMin = Min;
         SpawnMax = Max;
+    }
+
+    public void Spawn()
+    {
+        for(int i = 0; i < EnemyNumber; i++)
+        {
+            SpawnEnemy();
+            EnemyCount++;
+        }
     }
 
     
