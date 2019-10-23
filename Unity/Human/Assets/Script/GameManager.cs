@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
     public SpawnManager spManager;
     public CameraMove Camera = null;
     public GameObject Player;
+    public Bullet Bt;
 
     const int Default_EnemyNumber = 5;
     const float Default_SpawnMin = -74.0f;
@@ -16,11 +17,8 @@ public class GameManager : Singleton<GameManager>
     public float SpawnMax;
     public bool GameStart = false;
     public bool GameSetting = false;
-    
 
-    void Start()
-    {
-    }
+    
 
     public void SettingDifficult(int Number, float Min, float Max)
     {

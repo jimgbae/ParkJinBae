@@ -7,10 +7,9 @@ public class Move : MonoBehaviour
     public static bool PlayerLive = true; 
     public static float walkSpeed;
     public static float MoveDelta;
-    public GameObject bt;
+    public string bulletName =  "Bullet";
     public Transform FirePos;
-
-    private Rigidbody Rigid; 
+    private Rigidbody Rigid;
 
     void Start()
     {
@@ -39,7 +38,11 @@ public class Move : MonoBehaviour
             transform.Rotate(0, 1, 0, Space.World);
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(bt, FirePos.transform.position, FirePos.transform.rotation);
+            Shoot();
         }
+    }
+
+    void Shoot()
+    {
     }
 }

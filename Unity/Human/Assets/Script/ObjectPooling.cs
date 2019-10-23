@@ -41,15 +41,4 @@ public class ObjectPooling : MonoBehaviour
         item.SetActive(false);
         return item;
     }
-
-
-    void Start()
-    {
-        
-    }
-    
-    void Update()
-    {
-        
-    }
 }

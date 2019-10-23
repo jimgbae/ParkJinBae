@@ -584,7 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95f3db8188947641a5ac973561e2f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpManager: {fileID: 0}
+  GMManager: {fileID: 0}
 --- !u!1 &1011183547
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,7 +873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95f3db8188947641a5ac973561e2f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpManager: {fileID: 0}
+  GMManager: {fileID: 0}
 --- !u!4 &1481427961
 Transform:
   m_ObjectHideFlags: 0
@@ -918,9 +918,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spManager: {fileID: 0}
+  Camera: {fileID: 0}
+  Player: {fileID: 0}
   EnemyNumber: 5
   SpawnMin: -74
   SpawnMax: 74
+  GameStart: 0
+  GameSetting: 0
 --- !u!4 &1561107788
 Transform:
   m_ObjectHideFlags: 0

@@ -19,14 +19,6 @@ public class EnemyMove : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         MoveSpeed = 3.0f;
     }
-    
-    private void OnCollisionEnter(Collision coll)
-    {
-        if (coll.collider.tag == "Bullet")
-        {
-            Destroy(coll.gameObject);
-        }
-    }
 
 
     private void MoveEnemy()
