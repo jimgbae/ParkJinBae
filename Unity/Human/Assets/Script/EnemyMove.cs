@@ -30,6 +30,14 @@ public class EnemyMove : MonoBehaviour
         tr.LookAt(Target);
     }
 
+    private void OnCollisionEnter(Collision coll)
+    {
+        if (coll.collider.tag == "Bullet")
+        {
+            coll.gameObject.SetActive(false);
+        }
+    }
+
     void Update()
     {
         MoveEnemy();

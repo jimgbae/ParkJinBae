@@ -62,8 +62,7 @@
     <Compile Include="Assets\Script\EnemyMove.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\Move.cs" />
-    <Compile Include="Assets\Script\ObjectPool.cs" />
-    <Compile Include="Assets\Script\ObjectPooling.cs" />
+    <Compile Include="Assets\Script\ObjectManager.cs" />
     <Compile Include="Assets\Script\OptionManager.cs" />
     <Compile Include="Assets\Script\Singleton.cs" />
     <Compile Include="Assets\Script\SpawnManager.cs" />
