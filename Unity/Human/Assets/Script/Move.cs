@@ -43,7 +43,7 @@ public class Move : MonoBehaviour
 
     void Shoot()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKey(KeyCode.Space))
         {
             if (shootTimer > shootDelay)
             {
