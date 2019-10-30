@@ -55,7 +55,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
+    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
+    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\GunAim.cs" />
+    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\GunShoot.cs" />
+    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
+    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
+    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
+    <Compile Include="Assets\Prefabs\EffectExamples\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\BarrelCtrl.cs" />
+    <Compile Include="Assets\Scripts\BulletCtrl.cs" />
+    <Compile Include="Assets\Scripts\FireCtrl.cs" />
+    <Compile Include="Assets\Scripts\MyGizmos.cs" />
     <Compile Include="Assets\Scripts\PlayerCtrl.cs" />
+    <Compile Include="Assets\Scripts\RemoveBullet.cs" />
+    <Compile Include="Assets\Scripts\SmoothFollow.cs" />
+    <None Include="Assets\Prefabs\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
