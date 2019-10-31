@@ -306,6 +306,9 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.10f1/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="PackageManagerAssembly">
+      <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Assets/Prefabs/EffectExamples/Editor/PackageManagerAssembly/PackageManagerAssembly.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
@@ -320,9 +323,6 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="PackageManagerAssembly">
-      <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Assets/Prefabs/EffectExamples/Editor/PackageManagerAssembly/PackageManagerAssembly.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.10f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -683,6 +683,18 @@
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{C62420D1-41D1-CEDA-8486-1F95FA019E11}</Project>
       <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayerAD.csproj">
+      <Project>{0CD42B5C-7F97-BEAE-C628-B43C0EACBE9D}</Project>
+      <Name>PlayerAD</Name>
+    </ProjectReference>
+    <ProjectReference Include="StageAD.csproj">
+      <Project>{FDC915A0-D167-5357-37B4-9B4E882BE132}</Project>
+      <Name>StageAD</Name>
+    </ProjectReference>
+    <ProjectReference Include="EnemyAD.csproj">
+      <Project>{ED30D6AE-33CA-4250-58DE-D55A71D52822}</Project>
+      <Name>EnemyAD</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

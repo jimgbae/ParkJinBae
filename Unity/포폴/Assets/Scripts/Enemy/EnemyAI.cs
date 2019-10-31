@@ -1,0 +1,120 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyAI : MonoBehaviour
+{
+    //Enemy 상태 열거형 변수 정의
+    public enum STATE
+    {
+        STATE_PATROL = 0,
+        STATE_TRACE,
+        STATE_ATTACK,
+        STATE_DIE
+    }
+    //상태 저장 변수
+    public STATE state = STATE.STATE_PATROL;
+    //공격, 추적 사정거리
+    public float attackDist = 5.0f;
+    public float traceDist = 10.0f;
+    //죽음 판단 변수
+    public bool isDie = false;
+
+    //Player와 Enemy위치를 저장하는 변수
+    private Transform playerTr;
+    private Transform enemyTr;
+    //Animator 컴포넌트 저장 변수
+    private Animator animator;
+    //코루틴에서 사용할 지연시간 변수
+    private WaitForSeconds ws;
+    //MoveAgent클래스 저장 변수
+    private MoveAgent moveagent;
+
+    //파라미터 해시값 추출
+    private readonly int hashMove = Animator.StringToHash("isMove");
+    private readonly int hashSpeed = Animator.StringToHash("Speed");
+
+    void Awake()
+    {
+        //Player GameObject 추출
+        var player = GameObject.FindGameObjectWithTag("PLAYER");
+
+        //Player와 Enemy의 Transform 추출
+        if (player != null)
+            playerTr = player.GetComponent<Transform>(); 
+        enemyTr = GetComponent<Transform>();
+        //Anumator 추출
+        animator = GetComponent<Animator>();
+        //MoveAgent 추출
+        moveagent = GetComponent<MoveAgent>();
+        //코루틴 지연 시간
+        ws = new WaitForSeconds(0.3f);
+    }
+
+    void OnEnable()
+    {
+        StartCoroutine(CheckState());
+        StartCoroutine(Action());
+    }
+
+    IEnumerator CheckState()
+    {
+        while (!isDie)
+        {
+            //상태 사망이면 코루틴 종료
+            if (state == STATE.STATE_DIE) yield break;
+
+            //Player와 Enemy의 거리 계산
+            float dist = Vector3.Distance(playerTr.position, enemyTr.position);
+
+            //공격 및 추적 사거리 이내인 경우
+            if(dist <= attackDist)
+            {
+                state = STATE.STATE_ATTACK;
+            }
+            else if(dist <= traceDist)
+            {
+                state = STATE.STATE_TRACE;
+            }
+            else
+            {
+                state = STATE.STATE_PATROL;
+            }
+
+
+            yield return ws;
+        }
+    }
+
+    IEnumerator Action()
+    {
+        while(!isDie)
+        {
+            yield return ws;
+            switch (state)
+            {
+                case STATE.STATE_PATROL:
+                    moveagent.patrolling = true;
+                    animator.SetBool(hashMove, true);
+                    break;
+                case STATE.STATE_TRACE:
+                    moveagent.traceTarget = playerTr.position;
+                    animator.SetBool(hashMove, true);
+                    break;
+                case STATE.STATE_ATTACK:
+                    moveagent.Stop();
+                    animator.SetBool(hashMove, false);
+                    break;
+                case STATE.STATE_DIE:
+                    moveagent.Stop();
+                    break;
+            }
+
+        }
+    }
+
+    void Update()
+    {
+        animator.SetFloat(hashSpeed, moveagent.speed);
+    }
+}

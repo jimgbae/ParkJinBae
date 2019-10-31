@@ -63,13 +63,6 @@
     <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
     <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
     <Compile Include="Assets\Prefabs\EffectExamples\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\Scripts\BarrelCtrl.cs" />
-    <Compile Include="Assets\Scripts\BulletCtrl.cs" />
-    <Compile Include="Assets\Scripts\FireCtrl.cs" />
-    <Compile Include="Assets\Scripts\MyGizmos.cs" />
-    <Compile Include="Assets\Scripts\PlayerCtrl.cs" />
-    <Compile Include="Assets\Scripts\RemoveBullet.cs" />
-    <Compile Include="Assets\Scripts\SmoothFollow.cs" />
     <None Include="Assets\Prefabs\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
@@ -641,6 +634,20 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.10f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="PlayerAD.csproj">
+      <Project>{0CD42B5C-7F97-BEAE-C628-B43C0EACBE9D}</Project>
+      <Name>PlayerAD</Name>
+    </ProjectReference>
+    <ProjectReference Include="StageAD.csproj">
+      <Project>{FDC915A0-D167-5357-37B4-9B4E882BE132}</Project>
+      <Name>StageAD</Name>
+    </ProjectReference>
+    <ProjectReference Include="EnemyAD.csproj">
+      <Project>{ED30D6AE-33CA-4250-58DE-D55A71D52822}</Project>
+      <Name>EnemyAD</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
