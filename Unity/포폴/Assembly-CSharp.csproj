@@ -55,29 +55,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
-    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
-    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\GunAim.cs" />
-    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\GunShoot.cs" />
-    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
-    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
-    <Compile Include="Assets\Prefabs\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
-    <Compile Include="Assets\Prefabs\EffectExamples\TutorialInfo\Scripts\Readme.cs" />
-    <None Include="Assets\Prefabs\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
+    <Compile Include="Assets\Resources\Prefabs\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
+    <Compile Include="Assets\Resources\Prefabs\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
+    <Compile Include="Assets\Resources\Prefabs\EffectExamples\Shared\Scripts\GunAim.cs" />
+    <Compile Include="Assets\Resources\Prefabs\EffectExamples\Shared\Scripts\GunShoot.cs" />
+    <Compile Include="Assets\Resources\Prefabs\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
+    <Compile Include="Assets\Resources\Prefabs\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
+    <Compile Include="Assets\Resources\Prefabs\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
+    <Compile Include="Assets\Resources\Prefabs\EffectExamples\TutorialInfo\Scripts\Readme.cs" />
+    <None Include="Assets\Resources\Prefabs\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/work/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/work/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/work/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/work/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/work/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -281,13 +281,13 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.10f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/work/ParkJinBae/Unity/포폴/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/work/ParkJinBae/Unity/포폴/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/work/박진배/ParkJinBae/Unity/포폴/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/work/ParkJinBae/Unity/포폴/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.10f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -636,6 +636,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="CommonAD.csproj">
+      <Project>{B35F7246-8C5B-6DFA-57F1-56450F686BFE}</Project>
+      <Name>CommonAD</Name>
+    </ProjectReference>
     <ProjectReference Include="PlayerAD.csproj">
       <Project>{0CD42B5C-7F97-BEAE-C628-B43C0EACBE9D}</Project>
       <Name>PlayerAD</Name>
@@ -647,6 +651,10 @@
     <ProjectReference Include="EnemyAD.csproj">
       <Project>{ED30D6AE-33CA-4250-58DE-D55A71D52822}</Project>
       <Name>EnemyAD</Name>
+    </ProjectReference>
+    <ProjectReference Include="MainAD.csproj">
+      <Project>{AEC5160C-D7A7-4BD6-F056-E807806C98A7}</Project>
+      <Name>MainAD</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -54,8 +54,11 @@ public class MoveAgent : MonoBehaviour
 
     void Start()
     {
+
+        enemyTr = GetComponent<Transform>();
         agent = GetComponent<NavMeshAgent>();
         agent.autoBraking = false;
+        agent.updateRotation = false;
 
         agent.speed = patrolSpeed;
 
@@ -65,6 +68,8 @@ public class MoveAgent : MonoBehaviour
         {
             group.GetComponentsInChildren<Transform>(wayPoints);
             wayPoints.RemoveAt(0);
+
+            nextidx = Random.Range(0, wayPoints.Count);
         }
 
         MoveWayPoint();
@@ -98,11 +103,25 @@ public class MoveAgent : MonoBehaviour
     
     void Update()
     {
+        //Enemy가 이동 중일 때만 회전
+        if(agent.isStopped == false)
+        {
+            //NavMeshAgent가 가야할 방향을 쿼터니언 각도로 변환
+            Quaternion rot = Quaternion.LookRotation(agent.desiredVelocity);
+            //보간 함수로 점진적 회전
+            enemyTr.rotation = Quaternion.Slerp(enemyTr.rotation, rot, Time.deltaTime * damping);
+        }
+
+
+
         if (!_patrolling) return;
 
         if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f && agent.remainingDistance <= 0.5f)
         {
-            nextidx = ++nextidx % wayPoints.Count;
+            //다음 목적지의 배열 첨자를 계산
+            nextidx = Random.Range(0, wayPoints.Count);
+
+            //다음 목적지로 이동 명령 수행
             MoveWayPoint();
         }
     }

@@ -32,11 +32,16 @@ public class FireCtrl : MonoBehaviour
     private AudioSource _audio;
     public PlayerSfx playersfx;
 
+    //Shake클래스 저장 변수
+    private Shake shake;
+
    
     void Start()
     {
         muzzleFlash = firePos.GetComponentInChildren<ParticleSystem>();
         _audio = GetComponent<AudioSource>();
+        bullet = (Resources.Load("Prefabs/Bullet")) as GameObject;
+        shake = GameObject.Find("CameraManager").GetComponent<Shake>();
     }
     
     void Update()
@@ -49,6 +54,7 @@ public class FireCtrl : MonoBehaviour
 
     void Fire()
     {
+        StartCoroutine(shake.ShakeCamera(0.05f,0.1f,0.25f));
         Instantiate(bullet, firePos.position, firePos.rotation);
         cartrige.Play();
         muzzleFlash.Play();

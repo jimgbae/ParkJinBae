@@ -29,10 +29,17 @@ public class EnemyAI : MonoBehaviour
     private WaitForSeconds ws;
     //MoveAgent클래스 저장 변수
     private MoveAgent moveagent;
+    //EnemyFire 클래스 저장 변수
+    private EnemyFire enemyFire;
 
     //파라미터 해시값 추출
     private readonly int hashMove = Animator.StringToHash("isMove");
     private readonly int hashSpeed = Animator.StringToHash("Speed");
+    private readonly int hashDie = Animator.StringToHash("Die");
+    private readonly int hashDieIdx = Animator.StringToHash("DieIdx");
+    private readonly int hashOffset = Animator.StringToHash("Offset");
+    private readonly int hashwalkSpeed = Animator.StringToHash("WalkSpeed");
+    private readonly int hashPlayerDie = Animator.StringToHash("PlayerDie");
 
     void Awake()
     {
@@ -47,14 +54,28 @@ public class EnemyAI : MonoBehaviour
         animator = GetComponent<Animator>();
         //MoveAgent 추출
         moveagent = GetComponent<MoveAgent>();
+        //EnemyFire 추출
+        enemyFire = GetComponent<EnemyFire>();
+
         //코루틴 지연 시간
         ws = new WaitForSeconds(0.3f);
+
+        //Offset값과 Speed 값을 불규칙하게 변경
+        animator.SetFloat(hashOffset, Random.Range(0.0f, 1.0f));
+        animator.SetFloat(hashwalkSpeed, Random.Range(1.0f, 1.2f));
     }
 
     void OnEnable()
     {
         StartCoroutine(CheckState());
         StartCoroutine(Action());
+
+        Damage.OnPlayerDie += this.OnPlayerDie;
+    }
+
+    void OnDisable()
+    {
+        Damage.OnPlayerDie -= this.OnPlayerDie;
     }
 
     IEnumerator CheckState()
@@ -94,23 +115,40 @@ public class EnemyAI : MonoBehaviour
             switch (state)
             {
                 case STATE.STATE_PATROL:
+                    enemyFire.isFire = false;
                     moveagent.patrolling = true;
                     animator.SetBool(hashMove, true);
                     break;
                 case STATE.STATE_TRACE:
+                    enemyFire.isFire = false;
                     moveagent.traceTarget = playerTr.position;
                     animator.SetBool(hashMove, true);
                     break;
                 case STATE.STATE_ATTACK:
                     moveagent.Stop();
                     animator.SetBool(hashMove, false);
+                    if (enemyFire.isFire == false)
+                        enemyFire.isFire = true;
                     break;
                 case STATE.STATE_DIE:
+                    isDie = true;
+                    enemyFire.isFire = false;
                     moveagent.Stop();
+                    animator.SetInteger(hashDieIdx, Random.Range(0, 3));
+                    animator.SetTrigger(hashDie);
+                    GetComponent<CapsuleCollider>().enabled = false;
                     break;
             }
 
         }
+    }
+
+    public void OnPlayerDie()
+    {
+        moveagent.Stop();
+        enemyFire.isFire = false;
+        StopAllCoroutines();
+        animator.SetTrigger(hashPlayerDie);
     }
 
     void Update()

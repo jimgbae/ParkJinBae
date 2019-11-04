@@ -15,6 +15,8 @@ public class BarrelCtrl : MonoBehaviour
     public float expRadius = 10.0f;
     //오디오 클립 저장 변수
     public AudioClip expSfx;
+    //Shake 클래스 저장 변수
+    public Shake shake;
 
 
     //총알 맞은 횟수
@@ -35,6 +37,7 @@ public class BarrelCtrl : MonoBehaviour
         _audio = GetComponent<AudioSource>();
         _renderer = GetComponent<MeshRenderer>();
         _renderer.material.mainTexture = textures[Random.Range(0, textures.Length)];
+        shake = GameObject.Find("CameraManager").GetComponent<Shake>();
     }
 
     void OnCollisionEnter(Collision coll)
@@ -52,7 +55,7 @@ public class BarrelCtrl : MonoBehaviour
         GameObject effect = Instantiate(expEffect, transform.position, Quaternion.identity);
         Destroy(effect, 2.0f);
         //무게 1.0f로 설정
-        rigid.mass = 1.0f;
+        //rigid.mass = 1.0f;
 
         //폭발력 생성
         IndirectDamage(transform.position);
@@ -62,6 +65,8 @@ public class BarrelCtrl : MonoBehaviour
         GetComponent<MeshCollider>().sharedMesh = meshes[idx];
 
         _audio.PlayOneShot(expSfx, 1.0f);
+
+        StartCoroutine(shake.ShakeCamera(0.1f, 0.2f, 0.5f));
     }
 
     void IndirectDamage(Vector3 pos)
