@@ -63,6 +63,7 @@
     <Compile Include="Assets\Resources\Prefabs\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
     <Compile Include="Assets\Resources\Prefabs\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
     <Compile Include="Assets\Resources\Prefabs\EffectExamples\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\ScenesLoader.cs" />
     <None Include="Assets\Resources\Prefabs\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/work/ParkJinBae/Unity/포폴/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

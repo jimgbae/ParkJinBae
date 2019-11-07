@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 
 [System.Serializable]
@@ -35,6 +37,33 @@ public class FireCtrl : MonoBehaviour
     //Shake클래스 저장 변수
     private Shake shake;
 
+    //탄창 Image UI와 남은 총알 수 Text UI
+    public Image magazineImg;
+    public Text magazineText;
+
+    //최대 총알 수와 남은 총알 수
+    public int maxBullet = 20;
+    public int remainingBullet = 20;
+    //재장전 시간
+    public float reloadTime = 2.0f;
+    //재장전 여부 판단 변수
+    public bool isReloading = false;
+
+    //변경할 무기 Image와 교체할 무기 Image UI
+    public Sprite[] weaponIcons;
+    public Image weaponImage;
+    //Enemy의 레이어를 저장할 변수
+    private int enemyLayer;
+    //장애물 레이어를 저장할 변수
+    private int obstacleLayer;
+    //레이어 마스크의 비트 연산을 위한 변수
+    private int layerMask;
+    //자동 발사 여부 판단 변수
+    private bool isFire = false;
+    //다음 발사 시간 저장 변수
+    private float nextFire;
+    //총알 발사 간격
+    public float fireRate = 0.1f;
    
     void Start()
     {
@@ -42,23 +71,78 @@ public class FireCtrl : MonoBehaviour
         _audio = GetComponent<AudioSource>();
         bullet = (Resources.Load("Prefabs/Bullet")) as GameObject;
         shake = GameObject.Find("CameraManager").GetComponent<Shake>();
+        enemyLayer = LayerMask.NameToLayer("ENEMY");
+        obstacleLayer = LayerMask.NameToLayer("OBSTACLE");
+        layerMask = 1 << obstacleLayer | 1 << enemyLayer;
     }
     
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        Debug.DrawRay(firePos.position, firePos.forward * 20.0f, Color.green);
+
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
+        //레이캐스트에 검출된 객체 정보 저장 변수
+        RaycastHit hit;
+        //레이캐스트로 적 검출 ( 광선의 발사 원점 좌표, 광선 발사 방향 백터, 검출된 객체의 정보 반환 변수, 광선 도달 거리, 검출할 레이어 )
+        if (Physics.Raycast(firePos.position, firePos.forward, out hit, 20.0f, layerMask))
         {
+            isFire = (hit.collider.CompareTag("ENEMY"));
+        }
+        else
+        {
+            isFire = false;
+        }
+
+        //레이캐스트가 Enemy에 닿았을 시 자동 발사
+        if(!isReloading && isFire)
+        {
+            if(Time.time > nextFire)
+            {
+                --remainingBullet;
+                Fire();
+                if(remainingBullet == 0)
+                {
+                    StartCoroutine(Reloading());
+                }
+
+                nextFire = Time.time + fireRate;
+            }
+        }
+
+        if(!isReloading &&Input.GetMouseButtonDown(0))
+        {
+            --remainingBullet;
             Fire();
+
+            if(remainingBullet == 0)
+            {
+                StartCoroutine(Reloading());
+            }
         }
     }
 
     void Fire()
     {
+        //Shake효과 호출
         StartCoroutine(shake.ShakeCamera(0.05f,0.1f,0.25f));
-        Instantiate(bullet, firePos.position, firePos.rotation);
+        var _bullet = GameManager.instance.GetBullet();
+        if(_bullet != null)
+        {
+            _bullet.transform.position = firePos.position;
+            _bullet.transform.rotation = firePos.rotation;
+            _bullet.SetActive(true);
+        }
+        //탄피 추출 파티클 실행
         cartrige.Play();
+        //총구 화염 파티클 실행
         muzzleFlash.Play();
+        //사운드 발생
         FireSfx();
+
+        //재장전 이미지 속성값 지정, 남은 총알 수 갱신
+        magazineImg.fillAmount = (float)remainingBullet / (float)maxBullet;
+        UpdateBulletText();
     }
 
     void FireSfx()
@@ -67,5 +151,29 @@ public class FireCtrl : MonoBehaviour
         var _sfx = playersfx.fire[(int)currWeapon];
         //사운드 발생
         _audio.PlayOneShot(_sfx, 1.0f);
+    }
+
+    IEnumerator Reloading()
+    {
+        isReloading = true;
+        _audio.PlayOneShot(playersfx.reload[(int)currWeapon], 1.0f);
+
+        yield return new WaitForSeconds(playersfx.reload[(int)currWeapon].length + 0.3f);
+
+        isReloading = false;
+        magazineImg.fillAmount = 1.0f;
+        remainingBullet = maxBullet;
+        UpdateBulletText();
+    }
+
+    void UpdateBulletText()
+    {
+        magazineText.text = string.Format("<color=#ff0000>{0}</color>/{1}", remainingBullet, maxBullet);
+    }
+
+    public void OnChangeWeapon()
+    {
+        currWeapon = (WEAPON)((int)++currWeapon % 2);
+        weaponImage.sprite = weaponIcons[(int)currWeapon];
     }
 }

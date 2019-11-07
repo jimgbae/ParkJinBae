@@ -58,6 +58,9 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyDamage.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyFire.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyFOV.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyHpBar.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\MoveAgent.cs" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -658,6 +661,10 @@
     <ProjectReference Include="PlayerAD.csproj">
       <Project>{0CD42B5C-7F97-BEAE-C628-B43C0EACBE9D}</Project>
       <Name>PlayerAD</Name>
+    </ProjectReference>
+    <ProjectReference Include="CommonAD.csproj">
+      <Project>{B35F7246-8C5B-6DFA-57F1-56450F686BFE}</Project>
+      <Name>CommonAD</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

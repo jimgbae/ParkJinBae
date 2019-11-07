@@ -469,12 +469,13 @@ GameObject:
   - component: {fileID: 5103646888076427354}
   - component: {fileID: 5103646888076427331}
   - component: {fileID: 5103646888076427333}
-  - component: {fileID: 5103646888076427352}
   - component: {fileID: 5103646888076427335}
+  - component: {fileID: 5103646888076427352}
   - component: {fileID: 5103646888076427334}
   - component: {fileID: 5103646888076427332}
   - component: {fileID: 5103646888076427330}
-  m_Layer: 0
+  - component: {fileID: 114226463215048438}
+  m_Layer: 12
   m_Name: Enemy
   m_TagString: ENEMY
   m_Icon: {fileID: 0}
@@ -628,24 +629,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5103646888076427352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5103646888076427355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f12713a266bd3bc46aa24735ffaf9a85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  nextidx: 3
 --- !u!195 &5103646888076427335
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -668,6 +651,24 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5103646888076427352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5103646888076427355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f12713a266bd3bc46aa24735ffaf9a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nextidx: 3
 --- !u!114 &5103646888076427334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,3 +715,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bdeab3ebf93b9a48a91697589384abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyAI: {fileID: 0}
+  hpBarPrefab: {fileID: 8041549001736590267, guid: 7fc009b6a14d00648b040add8225e4ad,
+    type: 3}
+  hpBarOffset: {x: 0, y: 2.2, z: 0}
+--- !u!114 &114226463215048438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5103646888076427355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c7f6492018df54989d0ba0a73bb4cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRange: 15
+  viewAngle: 120

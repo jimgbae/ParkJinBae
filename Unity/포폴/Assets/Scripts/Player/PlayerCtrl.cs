@@ -28,6 +28,18 @@ public class PlayerCtrl : MonoBehaviour
     //Animation컴포넌트 저장 변수
     public Animation anim;
 
+
+
+    void OnEnable()
+    {
+        GameManager.OnItemChange += UpdateSetup;
+    }
+
+    void UpdateSetup()
+    {
+        moveSpeed = GameManager.instance.gameData.speed;
+    }
+
     void Start()
     {
         tr = GetComponent<Transform>();
@@ -36,6 +48,8 @@ public class PlayerCtrl : MonoBehaviour
         //Animation 컴포넌트의 애니메이션 클립 지정 실행
         anim.clip = playerAnim.idle;
         anim.Play();
+
+        moveSpeed = GameManager.instance.gameData.speed;
     }
     
     void Update()

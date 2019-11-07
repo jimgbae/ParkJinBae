@@ -20,8 +20,22 @@ public class Damage : MonoBehaviour
     public delegate void PlayerDieHandler();
     public static event PlayerDieHandler OnPlayerDie;
 
+
+
+    void OnEnable()
+    {
+        GameManager.OnItemChange += UpdateSetup;
+    }
+
+    void UpdateSetup()
+    {
+        initHp = GameManager.instance.gameData.hp;
+        currHp = GameManager.instance.gameData.hp - currHp;
+    }
+
     void Start()
     {
+        initHp = GameManager.instance.gameData.hp;
         currHp = initHp;
 
         hpBar.color = initColor;
@@ -58,6 +72,7 @@ public class Damage : MonoBehaviour
     void PlayerDie()
     {
         OnPlayerDie();
+        GameManager.instance.isGameOver = true;
     }
 
     void DisplayHpbar()

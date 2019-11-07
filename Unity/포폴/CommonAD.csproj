@@ -55,7 +55,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Common\DataManager\DataManager.cs" />
+    <Compile Include="Assets\Scripts\Common\DataManager\GameData.cs" />
+    <Compile Include="Assets\Scripts\Common\DataManager\ItemInfo.cs" />
+    <Compile Include="Assets\Scripts\Common\Drag.cs" />
+    <Compile Include="Assets\Scripts\Common\Drop.cs" />
     <Compile Include="Assets\Scripts\Common\FollowCam.cs" />
+    <Compile Include="Assets\Scripts\Common\GameManager.cs" />
     <Compile Include="Assets\Scripts\Common\Shake.cs" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

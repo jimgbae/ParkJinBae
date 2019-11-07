@@ -8,13 +8,37 @@ public class BulletCtrl : MonoBehaviour
     public float damage = 20.0f;
     public float speed = 1000.0f;
 
-    void Start()
+    //컴포넌트 저장 변수
+    private Transform tr;
+    private Rigidbody rigid;
+    private TrailRenderer trail;
+
+
+    void Awake()
     {
-        GetComponent<Rigidbody>().AddForce(transform.forward * speed);
+        tr = GetComponent<Transform>();
+        rigid = GetComponent<Rigidbody>();
+        trail = GetComponent<TrailRenderer>();
+
+        damage = GameManager.instance.gameData.damage;
     }
-    
-    void Update()
+
+    void OnEnable()
     {
-        
+        rigid.AddForce(transform.forward * speed);
+        GameManager.OnItemChange += UpdateSetup;
+    }
+
+    void UpdateSetup()
+    {
+        damage = GameManager.instance.gameData.damage;
+    }
+
+    void OnDisable()
+    {
+        trail.Clear();
+        tr.position = Vector3.zero;
+        tr.rotation = Quaternion.identity;
+        rigid.Sleep();
     }
 }

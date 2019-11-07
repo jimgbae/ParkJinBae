@@ -32,12 +32,15 @@ public class BarrelCtrl : MonoBehaviour
 
     void Start()
     {
-        rigid = GetComponent<Rigidbody>();
+        //rigid = GetComponent<Rigidbody>();
         meshFilter = GetComponent<MeshFilter>();
         _audio = GetComponent<AudioSource>();
         _renderer = GetComponent<MeshRenderer>();
         _renderer.material.mainTexture = textures[Random.Range(0, textures.Length)];
-        shake = GameObject.Find("CameraManager").GetComponent<Shake>();
+        //shake = GameObject.Find("CameraManager").GetComponent<Shake>();
+        StartCoroutine(GetShake());
+
+        _renderer.material.mainTexture = textures[Random.Range(0, textures.Length)];
     }
 
     void OnCollisionEnter(Collision coll)
@@ -78,5 +81,14 @@ public class BarrelCtrl : MonoBehaviour
             _rb.mass = 1.0f;
             _rb.AddExplosionForce(1200.0f, pos, expRadius, 1000.0f);
         }
+    }
+
+    IEnumerator GetShake()
+    {
+        while(!UnityEngine.SceneManagement.SceneManager.GetSceneByName("Play").isLoaded)
+        {
+            yield return null;
+        }
+        shake = GameObject.Find("CameraManager").GetComponent<Shake>();
     }
 }

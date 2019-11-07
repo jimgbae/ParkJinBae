@@ -33,6 +33,42 @@ public class EnemyFire : MonoBehaviour
     private bool isReload = false;
     private WaitForSeconds wsReload;
 
+    [Header("Object Pool")]
+    //총알 Prefab
+    public GameObject bulletPrefab;
+    //오브젝트 풀에 생성할 개수
+    public int maxPool = 10;
+    public List<GameObject> BulletPool = new List<GameObject>();
+
+    public GameObject GetBullets()
+    {
+        for (int i = 0; i < BulletPool.Count; i++)
+        {
+            //총알 비활성화 여부 판단
+            if (BulletPool[i].activeSelf == false)
+            {
+                return BulletPool[i];
+            }
+        }
+        return null;
+    }
+
+    //오브젝트 풀에 총알 생성 함수
+    public void CreatePooling()
+    {
+        GameObject objectPools = new GameObject("ObjectPools");
+
+        //풀링 개수만큼 미리 총알 생성
+        for (int i = 0; i < maxPool; i++)
+        {
+            var obj = Instantiate<GameObject>(bulletPrefab, objectPools.transform);
+            obj.name = "Bullet" + i.ToString("00");
+            obj.SetActive(false);
+            //리스트에 총알 추가
+            BulletPool.Add(obj);
+        }
+    }
+
     void Start()
     {
         //컴포넌트 추출 및 저장

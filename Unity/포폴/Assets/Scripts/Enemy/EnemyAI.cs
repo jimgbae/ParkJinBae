@@ -31,6 +31,8 @@ public class EnemyAI : MonoBehaviour
     private MoveAgent moveagent;
     //EnemyFire 클래스 저장 변수
     private EnemyFire enemyFire;
+    //EnemyFOV 클래스 저장 변수
+    private EnemyFOV enemyFOV;
 
     //파라미터 해시값 추출
     private readonly int hashMove = Animator.StringToHash("isMove");
@@ -56,6 +58,8 @@ public class EnemyAI : MonoBehaviour
         moveagent = GetComponent<MoveAgent>();
         //EnemyFire 추출
         enemyFire = GetComponent<EnemyFire>();
+        //EnemyFOV 추출
+        enemyFOV = GetComponent<EnemyFOV>();
 
         //코루틴 지연 시간
         ws = new WaitForSeconds(0.3f);
@@ -80,8 +84,11 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator CheckState()
     {
+        yield return new WaitForSeconds(1.0f);
+
         while (!isDie)
         {
+
             //상태 사망이면 코루틴 종료
             if (state == STATE.STATE_DIE) yield break;
 
@@ -91,9 +98,12 @@ public class EnemyAI : MonoBehaviour
             //공격 및 추적 사거리 이내인 경우
             if(dist <= attackDist)
             {
-                state = STATE.STATE_ATTACK;
-            }
-            else if(dist <= traceDist)
+                if (enemyFOV.isViewPlayer())
+                    state = STATE.STATE_ATTACK; //장애물 없으면 공격
+                else
+                    state = STATE.STATE_TRACE;  //장애물 있으면 추적
+            }//추적 반경 및 시야각에 들어왔는지 판단
+            else if(enemyFOV.isTracePlayer())
             {
                 state = STATE.STATE_TRACE;
             }
@@ -131,6 +141,7 @@ public class EnemyAI : MonoBehaviour
                         enemyFire.isFire = true;
                     break;
                 case STATE.STATE_DIE:
+                    this.gameObject.tag = "Untagged";
                     isDie = true;
                     enemyFire.isFire = false;
                     moveagent.Stop();
