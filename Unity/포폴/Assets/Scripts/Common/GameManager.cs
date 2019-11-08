@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using DataInfo;
 
 public class GameManager : MonoBehaviour
@@ -18,7 +19,20 @@ public class GameManager : MonoBehaviour
     public int maxPool = 20;
     public List<GameObject> BulletPool = new List<GameObject>();
 
-    private bool isPaused;
+    //Enemy 프리팹 저장 변수
+    public GameObject enemyPrefab;
+    //Enemy 생성 주기 변수
+    public float createTime = 2.0f;
+    //최대 Enemy 개수
+    private int maxEnemy = 10;
+    public List<GameObject> EnemyPool = new List<GameObject>();
+
+    //Enemy 스폰지역 위치 변수
+    public Transform[] points;
+    //게임 멈춤 판단 변수
+    public bool isPaused;
+    //죽은 Enemy 개수 판단 변수
+    public int EnemyDieCount = 0;
     //Inventory의 CanvasGroup 컴포넌트 저장 변수
     public CanvasGroup invenCG;
 
@@ -38,10 +52,15 @@ public class GameManager : MonoBehaviour
     private GameObject slotList;
     public GameObject[] itemObjects;
 
+    //GameOver나 Clear시 나타나는 Canvas Group 저장 변수
+    public CanvasGroup GameOverCG;
+    public CanvasGroup GameClearCG;
+    public CanvasGroup BlackCG;
+
 
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -56,14 +75,10 @@ public class GameManager : MonoBehaviour
         dataManager.Initialize();
 
         slotList = invenCG.transform.Find("SlotList").gameObject;
-        
+
 
         //게임 초기 데이터 로드
         LoadGameData();
-
-        //오브젝트 풀링 생성함수 호출
-        CreatePooling();
-        //CreateSpawnPooling();
     }
 
     void LoadGameData()
@@ -72,12 +87,14 @@ public class GameManager : MonoBehaviour
         GameData data = dataManager.Load();
 
         gameData.hp = data.hp;
+        gameData.level = data.level;
+        gameData.exp = data.exp;
         gameData.damage = data.damage;
         gameData.speed = data.speed;
         gameData.killCount = data.killCount;
         gameData.equipItem = data.equipItem;
 
-        if(gameData.equipItem.Count > 0)
+        if (gameData.equipItem.Count > 0)
         {
             InventorySetup();
         }
@@ -98,9 +115,9 @@ public class GameManager : MonoBehaviour
         var slots = slotList.GetComponentsInChildren<Transform>();
 
         //보유한 아이템 개수만큼 반복
-        for(int i = 0; i < gameData.equipItem.Count;i++)
+        for (int i = 0; i < gameData.equipItem.Count; i++)
         {
-            for(int j = 1; j < slots.Length; j++)
+            for (int j = 1; j < slots.Length; j++)
             {
                 //Slot하위에 다른 아이템 있을 시 다음 인덱스로 넘김
                 if (slots[j].childCount > 0) continue;
@@ -124,7 +141,7 @@ public class GameManager : MonoBehaviour
         //아이템을 GameData.equipItem 배열에 추가
         gameData.equipItem.Add(item);
 
-        switch(item.itemType)
+        switch (item.itemType)
         {
             case Item.ITEMTYPE.ITEMTYPE_HP:
                 if (item.itemCalc == Item.ITEMCALC.ITEMCALC_INC_VALUE)
@@ -188,22 +205,62 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Setting();
+        points = GameObject.Find("SpawnPoint").GetComponentsInChildren<Transform>();
+        GameOverCG = GameObject.Find("GameOver").GetComponent<CanvasGroup>();
+        GameClearCG = GameObject.Find("GameClear").GetComponent<CanvasGroup>();
+        BlackCG = GameObject.Find("BlackScreen").GetComponent<CanvasGroup>();
         //처음 인벤토리 비활성화
         OnInventoryOpen(false);
+        //처음 GameOver , GameClear 텍스트 비활성화
+        OnGameOverText(false);
+        OnGameClearText(false);
+
+        if (points.Length > 0)  
+        {
+            StartCoroutine(this.CreateEnemy());
+        }
     }
-    
+
     //오브젝트 풀에서 사용 가능한 총알을 가져오는 함수
     public GameObject GetBullet()
     {
-        for(int i = 0; i < BulletPool.Count; i++)
+        for (int i = 0; i < BulletPool.Count; i++)
         {
             //총알 비활성화 여부 판단
-            if(BulletPool[i].activeSelf == false)
+            if (BulletPool[i].activeSelf == false)
             {
                 return BulletPool[i];
             }
         }
         return null;
+    }
+
+    //EnemyList에서 사용 가능한 Enemy를 가져오는 함수
+    public GameObject GetEnemy()
+    {
+        for (int i = 0; i < EnemyPool.Count; i++)
+        {
+            if (EnemyPool[i].activeSelf == false)
+            {
+                return EnemyPool[i];
+            }
+        }
+        return null;
+    }
+
+    //오브젝트 풀에 Enemy 생성 함수
+    public void CreateEnemyPooling()
+    {
+        enemyPrefab = (Resources.Load("Prefabs/Enemy")) as GameObject;
+        GameObject EnemyObjectPool = new GameObject("EnemyList");
+        for (int i = 0; i < maxEnemy; i++)
+        {
+            var obj = Instantiate<GameObject>(enemyPrefab, EnemyObjectPool.transform);
+            obj.name = "Enemy" + i.ToString("00");
+            obj.SetActive(false);
+            EnemyPool.Add(obj);
+        }
     }
 
     //오브젝트 풀에 총알 생성 함수
@@ -212,7 +269,7 @@ public class GameManager : MonoBehaviour
         GameObject objectPools = new GameObject("ObjectPools");
 
         //풀링 개수만큼 미리 총알 생성
-        for(int i = 0; i < maxPool; i++)
+        for (int i = 0; i < maxPool; i++)
         {
             var obj = Instantiate<GameObject>(bulletPrefab, objectPools.transform);
             obj.name = "Bullet" + i.ToString("00");
@@ -221,7 +278,7 @@ public class GameManager : MonoBehaviour
             BulletPool.Add(obj);
         }
     }
-    
+
 
     public void OnPauseClick()
     {
@@ -262,8 +319,85 @@ public class GameManager : MonoBehaviour
         SaveGameData();
     }
 
+    //적 생성
+    IEnumerator CreateEnemy()
+    {
+        while (!isGameOver)
+        {
+            int enemyCount = 0;
+
+            if (enemyCount < maxEnemy)
+            {
+                yield return new WaitForSeconds(createTime);
+
+                enemyCount++;
+                //SpawnPoint 랜덤 위치 설정
+                int idx = Random.Range(1, points.Length);
+                var _Enemy = GetEnemy();
+                if (_Enemy != null)
+                {
+                    _Enemy.transform.position = points[idx].position;
+                    _Enemy.SetActive(true);
+                }
+            }
+            if(EnemyDieCount == maxEnemy)
+            {
+                SaveGameData();
+                OnGameClearText(true);
+                isGameOver = true;
+            }
+        }
+    }
+
+    public void KillEnemy()
+    {
+        EnemyDieCount++;
+    }
+
+    public void PlayerDie()
+    {
+        OnGameOverText(true);
+        gameData.killCount = 0;
+        SaveGameData();
+    }
+
+
+    //GameOver , GameClear Text표시 함수
+    void OnGameOverText(bool isOpened)
+    {
+        BlackCG.alpha = (isOpened) ? 1.0f : 0.0f;
+        BlackCG.interactable = isOpened;
+        BlackCG.blocksRaycasts = isOpened;
+        GameOverCG.alpha = (isOpened) ? 1.0f : 0.0f;
+        GameOverCG.interactable = isOpened;
+        GameOverCG.blocksRaycasts = isOpened;
+}
+
+    void OnGameClearText(bool isOpened)
+    {
+        BlackCG.alpha = (isOpened) ? 1.0f : 0.0f;
+        BlackCG.interactable = isOpened;
+        BlackCG.blocksRaycasts = isOpened;
+        GameClearCG.alpha = (isOpened) ? 1.0f : 0.0f;
+        GameClearCG.interactable = isOpened;
+        GameClearCG.blocksRaycasts = isOpened;
+    }
+
+    public void Setting()
+    {
+        CreatePooling();
+        CreateEnemyPooling();
+    }   
+
     void Update()
     {
-        
+        if(isGameOver == true && Input.GetKeyDown(KeyCode.L))
+        {
+            isGameOver = false;
+            OnGameClearText(false);
+            OnGameOverText(false);
+            OnInventoryOpen(false);
+            SceneManager.LoadScene("Main");
+        }
     }
 }

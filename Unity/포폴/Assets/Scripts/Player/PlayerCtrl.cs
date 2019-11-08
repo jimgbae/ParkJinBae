@@ -11,6 +11,7 @@ public class PlayerAnim
     public AnimationClip runB;
     public AnimationClip runL;
     public AnimationClip runR;
+    public AnimationClip Reload;
 }
 
 public class PlayerCtrl : MonoBehaviour
@@ -28,6 +29,8 @@ public class PlayerCtrl : MonoBehaviour
     //Animation컴포넌트 저장 변수
     public Animation anim;
 
+    public FireCtrl fireC;
+
 
 
     void OnEnable()
@@ -42,6 +45,8 @@ public class PlayerCtrl : MonoBehaviour
 
     void Start()
     {
+        fireC = GetComponent<FireCtrl>();
+
         tr = GetComponent<Transform>();
         //Animation 컴포넌트 변수 할당
         anim = GetComponent<Animation>();
@@ -79,13 +84,18 @@ public class PlayerCtrl : MonoBehaviour
         {
             anim.CrossFade(playerAnim.runR.name, 0.3f);//오른쪽 애니메이션
         }
-        else if (h <= -0.1f)
+        else if (h <= -0.1f)    
         {
             anim.CrossFade(playerAnim.runL.name, 0.3f);//왼쪽 애니메이션
         }
         else
         {
             anim.CrossFade(playerAnim.idle.name, 0.3f);//정지 애니메이션
+        }
+
+        if(fireC.isReloading)
+        {
+            anim.CrossFade(playerAnim.Reload.name, 0.3f);
         }
     }
 }

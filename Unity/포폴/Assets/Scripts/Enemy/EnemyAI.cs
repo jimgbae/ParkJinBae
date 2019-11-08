@@ -33,6 +33,8 @@ public class EnemyAI : MonoBehaviour
     private EnemyFire enemyFire;
     //EnemyFOV 클래스 저장 변수
     private EnemyFOV enemyFOV;
+    //PlayerLv 클래스 저장 변수
+    private PlayerLv playerLv;
 
     //파라미터 해시값 추출
     private readonly int hashMove = Animator.StringToHash("isMove");
@@ -50,7 +52,10 @@ public class EnemyAI : MonoBehaviour
 
         //Player와 Enemy의 Transform 추출
         if (player != null)
-            playerTr = player.GetComponent<Transform>(); 
+        {
+            playerTr = player.GetComponent<Transform>();
+            playerLv = player.GetComponent<PlayerLv>();
+        }
         enemyTr = GetComponent<Transform>();
         //Anumator 추출
         animator = GetComponent<Animator>();
@@ -141,8 +146,9 @@ public class EnemyAI : MonoBehaviour
                         enemyFire.isFire = true;
                     break;
                 case STATE.STATE_DIE:
-                    this.gameObject.tag = "Untagged";
                     isDie = true;
+                    GameManager.instance.KillEnemy();
+                    playerLv.KillEnemy();
                     enemyFire.isFire = false;
                     moveagent.Stop();
                     animator.SetInteger(hashDieIdx, Random.Range(0, 3));
@@ -150,7 +156,6 @@ public class EnemyAI : MonoBehaviour
                     GetComponent<CapsuleCollider>().enabled = false;
                     break;
             }
-
         }
     }
 

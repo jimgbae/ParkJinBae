@@ -35,6 +35,7 @@ public class Damage : MonoBehaviour
 
     void Start()
     {
+
         initHp = GameManager.instance.gameData.hp;
         currHp = initHp;
 
@@ -72,6 +73,7 @@ public class Damage : MonoBehaviour
     void PlayerDie()
     {
         OnPlayerDie();
+        GameManager.instance.PlayerDie();
         GameManager.instance.isGameOver = true;
     }
 

@@ -59,11 +59,11 @@ public class FireCtrl : MonoBehaviour
     //레이어 마스크의 비트 연산을 위한 변수
     private int layerMask;
     //자동 발사 여부 판단 변수
-    private bool isFire = false;
+    public bool isFire = false;
     //다음 발사 시간 저장 변수
     private float nextFire;
     //총알 발사 간격
-    public float fireRate = 0.1f;
+    public float fireRate = 0.2f;
    
     void Start()
     {
