@@ -641,12 +641,12 @@
       <Project>{0CD42B5C-7F97-BEAE-C628-B43C0EACBE9D}</Project>      <Name>PlayerAD</Name>    </ProjectReference>
     <ProjectReference Include="StageAD.csproj">
       <Project>{FDC915A0-D167-5357-37B4-9B4E882BE132}</Project>      <Name>StageAD</Name>    </ProjectReference>
+    <ProjectReference Include="OptionAD.csproj">
+      <Project>{18BAF96C-727C-1529-40C4-A78B3BECF19E}</Project>      <Name>OptionAD</Name>    </ProjectReference>
     <ProjectReference Include="EnemyAD.csproj">
       <Project>{ED30D6AE-33CA-4250-58DE-D55A71D52822}</Project>      <Name>EnemyAD</Name>    </ProjectReference>
     <ProjectReference Include="MainAD.csproj">
       <Project>{AEC5160C-D7A7-4BD6-F056-E807806C98A7}</Project>      <Name>MainAD</Name>    </ProjectReference>
-    <ProjectReference Include="OptionAD.csproj">
-      <Project>{18BAF96C-727C-1529-40C4-A78B3BECF19E}</Project>      <Name>OptionAD</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

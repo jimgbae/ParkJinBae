@@ -24,19 +24,18 @@ public class GameManager : MonoBehaviour
     //Enemy 생성 주기 변수
     public float createTime = 2.0f;
     //최대 Enemy 개수
-    private int maxEnemy = 10;
+    public int maxEnemy = 10;
     public List<GameObject> EnemyPool = new List<GameObject>();
 
     //Enemy 스폰지역 위치 변수
     public Transform[] points;
     //게임 멈춤 판단 변수
     public bool isPaused;
-    //죽은 Enemy 개수 판단 변수
-    public int EnemyDieCount = 0;
     //Inventory의 CanvasGroup 컴포넌트 저장 변수
     public CanvasGroup invenCG;
 
     //Player가 Enemy를 죽인 횟수
+    public int EnemyDieCount = 0;
     [Header("GameData")]
     //Enemy를 죽인 횟수 표시 Text UI
     public Text KillCountText;
@@ -51,11 +50,6 @@ public class GameManager : MonoBehaviour
     //SlotList 게임오브젝트 저장 변수와 ItemList 하위에 있는 네 개의 아이템 저장 배열
     private GameObject slotList;
     public GameObject[] itemObjects;
-
-    //GameOver나 Clear시 나타나는 Canvas Group 저장 변수
-    public CanvasGroup GameOverCG;
-    public CanvasGroup GameClearCG;
-    public CanvasGroup BlackCG;
 
 
     void Awake()
@@ -79,6 +73,8 @@ public class GameManager : MonoBehaviour
 
         //게임 초기 데이터 로드
         LoadGameData();
+
+        Setting();
     }
 
     void LoadGameData()
@@ -205,21 +201,33 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Setting();
         points = GameObject.Find("SpawnPoint").GetComponentsInChildren<Transform>();
-        GameOverCG = GameObject.Find("GameOver").GetComponent<CanvasGroup>();
-        GameClearCG = GameObject.Find("GameClear").GetComponent<CanvasGroup>();
-        BlackCG = GameObject.Find("BlackScreen").GetComponent<CanvasGroup>();
         //처음 인벤토리 비활성화
         OnInventoryOpen(false);
-        //처음 GameOver , GameClear 텍스트 비활성화
-        OnGameOverText(false);
-        OnGameClearText(false);
+
+        SetItem();
+        SetText();
+
 
         if (points.Length > 0)  
         {
             StartCoroutine(this.CreateEnemy());
         }
+    }
+
+    void SetItem()
+    {
+        int i = 0;
+        itemObjects[i++] = (Resources.Load("Prefabs/ItemHp")) as GameObject;
+        itemObjects[i++] = (Resources.Load("Prefabs/ItemSpeed")) as GameObject;
+        itemObjects[i++] = (Resources.Load("Prefabs/ItemGrenade")) as GameObject;
+        itemObjects[i++] = (Resources.Load("Prefabs/ItemShock")) as GameObject;
+    }
+
+    void SetText()
+    {
+        var KillCount = (Resources.Load("Prefabs/KillCount")) as GameObject;
+        KillCountText = KillCount.GetComponent<Text>();
     }
 
     //오브젝트 풀에서 사용 가능한 총알을 가져오는 함수
@@ -314,6 +322,16 @@ public class GameManager : MonoBehaviour
         KillCountText.text = "KILL " + gameData.killCount.ToString("0000");
     }
 
+    public void IncExp()
+    {
+        gameData.exp += 10.0f;
+    }
+
+    public void IncLevel(int CurLevel)
+    {
+        gameData.level = CurLevel;
+    }
+
     void OnApplicationQuit()
     {
         SaveGameData();
@@ -342,62 +360,44 @@ public class GameManager : MonoBehaviour
             }
             if(EnemyDieCount == maxEnemy)
             {
-                SaveGameData();
-                OnGameClearText(true);
+                PlayerWin();
                 isGameOver = true;
             }
         }
     }
 
-    public void KillEnemy()
+    public void PlayerWin()
     {
-        EnemyDieCount++;
+        SaveGameData();
+        SceneManager.LoadScene("GameClear");
     }
 
     public void PlayerDie()
     {
-        OnGameOverText(true);
         gameData.killCount = 0;
         SaveGameData();
-    }
-
-
-    //GameOver , GameClear Text표시 함수
-    void OnGameOverText(bool isOpened)
-    {
-        BlackCG.alpha = (isOpened) ? 1.0f : 0.0f;
-        BlackCG.interactable = isOpened;
-        BlackCG.blocksRaycasts = isOpened;
-        GameOverCG.alpha = (isOpened) ? 1.0f : 0.0f;
-        GameOverCG.interactable = isOpened;
-        GameOverCG.blocksRaycasts = isOpened;
-}
-
-    void OnGameClearText(bool isOpened)
-    {
-        BlackCG.alpha = (isOpened) ? 1.0f : 0.0f;
-        BlackCG.interactable = isOpened;
-        BlackCG.blocksRaycasts = isOpened;
-        GameClearCG.alpha = (isOpened) ? 1.0f : 0.0f;
-        GameClearCG.interactable = isOpened;
-        GameClearCG.blocksRaycasts = isOpened;
+        SceneManager.LoadScene("GameOver");
     }
 
     public void Setting()
     {
         CreatePooling();
         CreateEnemyPooling();
+        Cursor.lockState = CursorLockMode.Confined;
     }   
+
+    public void Reset()
+    {
+        isGameOver = false;
+        EnemyDieCount = 0;
+
+    }
 
     void Update()
     {
-        if(isGameOver == true && Input.GetKeyDown(KeyCode.L))
+        if(Input.GetKeyDown(KeyCode.I))
         {
-            isGameOver = false;
-            OnGameClearText(false);
-            OnGameOverText(false);
-            OnInventoryOpen(false);
-            SceneManager.LoadScene("Main");
+            OnInventoryOpen(true);
         }
     }
 }

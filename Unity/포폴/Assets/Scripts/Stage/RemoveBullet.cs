@@ -9,9 +9,18 @@ public class RemoveBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision coll)
     {
-        if(coll.collider.tag == "BULLET")
+        if (coll.collider.tag == "BULLET") 
         {
             ShowEffect(coll);
+            coll.gameObject.SetActive(false);
+        }
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.tag == "BULLET")
+        {
+            //총알 삭제
             coll.gameObject.SetActive(false);
         }
     }

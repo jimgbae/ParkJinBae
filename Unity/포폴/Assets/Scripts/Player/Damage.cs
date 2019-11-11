@@ -47,7 +47,8 @@ public class Damage : MonoBehaviour
     {
         if (coll.tag == bulletTag)
         {
-            Destroy(coll.gameObject);
+            //총알 삭제
+            coll.gameObject.SetActive(false);
 
             StartCoroutine(ShowBloodScreen());
 

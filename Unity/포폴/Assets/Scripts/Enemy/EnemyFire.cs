@@ -21,8 +21,6 @@ public class EnemyFire : MonoBehaviour
     public bool isFire = false;
     public AudioClip fireSfx;
     public AudioClip reloadSfx;
-
-    public GameObject Bullet;
     public Transform firePos;
     public MeshRenderer muzzleFlash;
 
@@ -40,6 +38,13 @@ public class EnemyFire : MonoBehaviour
     public int maxPool = 10;
     public List<GameObject> BulletPool = new List<GameObject>();
 
+    void Awake()
+    {
+        bulletPrefab = (Resources.Load("Prefabs/E_Bullet")) as GameObject;
+
+        CreateEnemyBullet();
+    }
+
     public GameObject GetBullets()
     {
         for (int i = 0; i < BulletPool.Count; i++)
@@ -54,9 +59,9 @@ public class EnemyFire : MonoBehaviour
     }
 
     //오브젝트 풀에 총알 생성 함수
-    public void CreatePooling()
+    public void CreateEnemyBullet()
     {
-        GameObject objectPools = new GameObject("ObjectPools");
+        GameObject objectPools = new GameObject("EnemyBullets");
 
         //풀링 개수만큼 미리 총알 생성
         for (int i = 0; i < maxPool; i++)
@@ -76,8 +81,6 @@ public class EnemyFire : MonoBehaviour
         enemyTr = GetComponent<Transform>();
         _animator = GetComponent<Animator>();
         _audio = GetComponent<AudioSource>();
-
-        Bullet = (Resources.Load("Prefabs/E_Bullet")) as GameObject;
 
         wsReload = new WaitForSeconds(reloadTime);
         muzzleFlash.enabled = false;
@@ -106,8 +109,13 @@ public class EnemyFire : MonoBehaviour
         _audio.PlayOneShot(fireSfx, 1.0f);
         StartCoroutine(ShowMuzzleFlash());
 
-        GameObject _bullet = Instantiate(Bullet, firePos.position, firePos.rotation);
-        Destroy(_bullet, 3.0f);
+        var _bullet = GetBullets();
+        if (_bullet != null)
+        {
+            _bullet.transform.position = firePos.position;
+            _bullet.transform.rotation = firePos.rotation;
+            _bullet.SetActive(true);
+        }
         isReload = (--currBullet % maxBullet == 0);
         if(isReload)
         {

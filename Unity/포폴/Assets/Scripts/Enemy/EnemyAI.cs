@@ -147,7 +147,6 @@ public class EnemyAI : MonoBehaviour
                     break;
                 case STATE.STATE_DIE:
                     isDie = true;
-                    GameManager.instance.KillEnemy();
                     playerLv.KillEnemy();
                     enemyFire.isFire = false;
                     moveagent.Stop();
