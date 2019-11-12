@@ -27,7 +27,6 @@ public class DataManager : MonoBehaviour
         //파일에 저장할 클래스에 데이터 할당
         GameData data = new GameData();
         data.killCount = gameData.killCount;
-        data.level = gameData.level;
         data.hp = gameData.hp;
         data.exp = gameData.exp;
         data.speed = gameData.speed;

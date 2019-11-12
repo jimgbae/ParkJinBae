@@ -83,7 +83,6 @@ public class GameManager : MonoBehaviour
         GameData data = dataManager.Load();
 
         gameData.hp = data.hp;
-        gameData.level = data.level;
         gameData.exp = data.exp;
         gameData.damage = data.damage;
         gameData.speed = data.speed;
@@ -117,12 +116,15 @@ public class GameManager : MonoBehaviour
             {
                 //Slot하위에 다른 아이템 있을 시 다음 인덱스로 넘김
                 if (slots[j].childCount > 0) continue;
+
                 //보유한 아이템 종류에 따라 인덱스 추출
                 int itemIndex = (int)gameData.equipItem[i].itemType;
+
                 //아이템의 부모를 Slot으로 변경
                 itemObjects[itemIndex].GetComponent<Transform>().SetParent(slots[j]);
                 //아이템의 ItemInfo클래스의 itemData에 로드한 데이터값 저장
                 itemObjects[itemIndex].GetComponent<ItemInfo>().itemData = gameData.equipItem[i];
+
                 //아이템 slot에 추가하면 for문 종료
                 break;
             }
@@ -204,8 +206,7 @@ public class GameManager : MonoBehaviour
         points = GameObject.Find("SpawnPoint").GetComponentsInChildren<Transform>();
         //처음 인벤토리 비활성화
         OnInventoryOpen(false);
-
-        SetItem();
+        
         SetText();
 
 
@@ -213,15 +214,6 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(this.CreateEnemy());
         }
-    }
-
-    void SetItem()
-    {
-        int i = 0;
-        itemObjects[i++] = (Resources.Load("Prefabs/ItemHp")) as GameObject;
-        itemObjects[i++] = (Resources.Load("Prefabs/ItemSpeed")) as GameObject;
-        itemObjects[i++] = (Resources.Load("Prefabs/ItemGrenade")) as GameObject;
-        itemObjects[i++] = (Resources.Load("Prefabs/ItemShock")) as GameObject;
     }
 
     void SetText()
@@ -261,10 +253,9 @@ public class GameManager : MonoBehaviour
     public void CreateEnemyPooling()
     {
         enemyPrefab = (Resources.Load("Prefabs/Enemy")) as GameObject;
-        GameObject EnemyObjectPool = new GameObject("EnemyList");
         for (int i = 0; i < maxEnemy; i++)
         {
-            var obj = Instantiate<GameObject>(enemyPrefab, EnemyObjectPool.transform);
+            var obj = Instantiate<GameObject>(enemyPrefab,this.transform);
             obj.name = "Enemy" + i.ToString("00");
             obj.SetActive(false);
             EnemyPool.Add(obj);
@@ -274,12 +265,10 @@ public class GameManager : MonoBehaviour
     //오브젝트 풀에 총알 생성 함수
     public void CreatePooling()
     {
-        GameObject objectPools = new GameObject("ObjectPools");
-
         //풀링 개수만큼 미리 총알 생성
         for (int i = 0; i < maxPool; i++)
         {
-            var obj = Instantiate<GameObject>(bulletPrefab, objectPools.transform);
+            var obj = Instantiate<GameObject>(bulletPrefab,this.transform);
             obj.name = "Bullet" + i.ToString("00");
             obj.SetActive(false);
             //리스트에 총알 추가
@@ -322,14 +311,9 @@ public class GameManager : MonoBehaviour
         KillCountText.text = "KILL " + gameData.killCount.ToString("0000");
     }
 
-    public void IncExp()
+    public void IncExp(float Exp)
     {
-        gameData.exp += 10.0f;
-    }
-
-    public void IncLevel(int CurLevel)
-    {
-        gameData.level = CurLevel;
+        gameData.exp += Exp;
     }
 
     void OnApplicationQuit()

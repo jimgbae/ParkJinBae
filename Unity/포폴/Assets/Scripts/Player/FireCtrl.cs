@@ -120,6 +120,11 @@ public class FireCtrl : MonoBehaviour
                 StartCoroutine(Reloading());
             }
         }
+
+        if (!isReloading && Input.GetKeyDown(KeyCode.R) && !isFire)
+        {
+            StartCoroutine(Reloading());
+        }
     }
 
     void Fire()

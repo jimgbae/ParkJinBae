@@ -7,48 +7,69 @@ using UnityEngine.UI;
 public class PlayerLv : MonoBehaviour
 {
     //Player 레벨
-    public int Level = 1;
+    public int Level;
 
     //Player 경험치
-    private float MaxEXP;
+    private float MaxEXP = 100.0f;
+    private float SaveEXP;
     public float currEXP;
+
+    //Enemy 처치시 경험치
+    public float KillExp = 10.0f;
 
     //EXP Image, Text
     public Image expBar;
     public Text ExpText;
 
-    private readonly Color initColor = new Vector4(0, 0.0f, 0.0f, 1.0f);
+    private readonly Color initColor = new Vector4(0.0f,1.0f,0.0f,1.0f);
     private Color currColor;
 
-
-    void Awake()
-    {
-        MaxEXP += (Level * 20);
-    }
+    
 
     void Start()
     {
         //GameData에서 레벨 , 경험치 불러오기
-        Level = GameManager.instance.gameData.level;
-        MaxEXP += 100 + (Level * 20);
-        currEXP = GameManager.instance.gameData.exp;
+        SaveEXP = GameManager.instance.gameData.exp;
+        MaxExpSetting();
+        LvSetting();
 
         expBar.color = initColor;
         currColor = initColor;
+    }
+
+    void MaxExpSetting()
+    {
+        if(SaveEXP / MaxEXP >= 10 && SaveEXP / MaxEXP < 20)
+        {
+            MaxEXP = 500.0f;
+        }
+        else if(SaveEXP / MaxEXP >= 20 && SaveEXP / MaxEXP < 30)
+        {
+            MaxEXP = 1300.0f;
+        }
+    }
+
+    void LvSetting()
+    {
+        if (SaveEXP >= MaxEXP)
+        {
+            Level = ((int)SaveEXP / (int)MaxEXP);
+            currEXP = (SaveEXP % MaxEXP);
+            UpdateExpText();
+        }
     }
 
     public void KillEnemy()
     {
         GameManager.instance.EnemyDieCount++;
         currEXP += 10.0f;
-        GameManager.instance.IncExp();
+        GameManager.instance.IncExp(KillExp);
         UpdateExpText();
     }
 
     void DisplayExpbar()
     {
-        currColor.g = (currEXP / MaxEXP) * 2.0f;
-        expBar.color = currColor;   
+        expBar.color = initColor;   
         expBar.fillAmount = (currEXP / MaxEXP);
     }
 
@@ -60,13 +81,12 @@ public class PlayerLv : MonoBehaviour
 
     void Update()
     {
-        if (currEXP >= MaxEXP)
+        UpdateExpText();
+        if(currEXP >= MaxEXP)
         {
-            Level += 1;
+            Level++;
             currEXP = 0;
-            MaxEXP += (Level * 20);
             UpdateExpText();
-            GameManager.instance.IncLevel(Level);
         }
     }
 }

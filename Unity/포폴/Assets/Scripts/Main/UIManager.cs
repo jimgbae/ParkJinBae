@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour
 
     public void OnClickStartBtn()
     {
-
         SceneManager.LoadScene("SceneLoader");
     }
 

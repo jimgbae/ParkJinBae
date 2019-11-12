@@ -2383,21 +2383,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2205549606512628289, guid: bb7a87935a9386e4885e0d1f630c3512,
-        type: 3}
-      propertyPath: weaponImage
-      value: 
-      objectReference: {fileID: 1625864365}
-    - target: {fileID: 2205549606512628289, guid: bb7a87935a9386e4885e0d1f630c3512,
-        type: 3}
-      propertyPath: magazineText
-      value: 
-      objectReference: {fileID: 1720824310}
-    - target: {fileID: 2205549606512628289, guid: bb7a87935a9386e4885e0d1f630c3512,
-        type: 3}
-      propertyPath: magazineImg
-      value: 
-      objectReference: {fileID: 99746364}
     - target: {fileID: 2205549606513019114, guid: bb7a87935a9386e4885e0d1f630c3512,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2453,6 +2438,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2205549606512628289, guid: bb7a87935a9386e4885e0d1f630c3512,
+        type: 3}
+      propertyPath: weaponImage
+      value: 
+      objectReference: {fileID: 1625864365}
+    - target: {fileID: 2205549606512628289, guid: bb7a87935a9386e4885e0d1f630c3512,
+        type: 3}
+      propertyPath: magazineText
+      value: 
+      objectReference: {fileID: 1720824310}
+    - target: {fileID: 2205549606512628289, guid: bb7a87935a9386e4885e0d1f630c3512,
+        type: 3}
+      propertyPath: magazineImg
+      value: 
+      objectReference: {fileID: 99746364}
     - target: {fileID: 2205549606512628317, guid: bb7a87935a9386e4885e0d1f630c3512,
         type: 3}
       propertyPath: hpBar
@@ -5221,10 +5221,10 @@ MonoBehaviour:
     speed: 6
     equipItem: []
   itemObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 933593715}
+  - {fileID: 1577358315}
+  - {fileID: 400222475}
+  - {fileID: 184224961}
 --- !u!4 &2145258842
 Transform:
   m_ObjectHideFlags: 0
