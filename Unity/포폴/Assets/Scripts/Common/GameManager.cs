@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     //게임 종료 판단 변수
     public bool isGameOver = false;
+    //게임 리셋 판단 변수
+    public bool isReset = false;
     //Singleton에 접근하기 위해 static으로 변수 선언
     public static GameManager instance = null;
 
@@ -24,7 +26,7 @@ public class GameManager : MonoBehaviour
     //Enemy 생성 주기 변수
     public float createTime = 2.0f;
     //최대 Enemy 개수
-    public int maxEnemy = 10;
+    public int maxEnemy;
     public List<GameObject> EnemyPool = new List<GameObject>();
 
     //Enemy 스폰지역 위치 변수
@@ -51,6 +53,9 @@ public class GameManager : MonoBehaviour
     private GameObject slotList;
     public GameObject[] itemObjects;
 
+    //StageManager 컴포넌트 저장 변수
+    private StageManager stageM;
+
 
     void Awake()
     {
@@ -74,7 +79,8 @@ public class GameManager : MonoBehaviour
         //게임 초기 데이터 로드
         LoadGameData();
 
-        Setting();
+        //총알 오브젝트 풀에 생성
+        CreatePooling();
     }
 
     void LoadGameData()
@@ -203,12 +209,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        points = GameObject.Find("SpawnPoint").GetComponentsInChildren<Transform>();
+        stageM = GetComponent<StageManager>();
         //처음 인벤토리 비활성화
         OnInventoryOpen(false);
         
         SetText();
 
+        Setting();
 
         if (points.Length > 0)  
         {
@@ -252,7 +259,6 @@ public class GameManager : MonoBehaviour
     //오브젝트 풀에 Enemy 생성 함수
     public void CreateEnemyPooling()
     {
-        enemyPrefab = (Resources.Load("Prefabs/Enemy")) as GameObject;
         for (int i = 0; i < maxEnemy; i++)
         {
             var obj = Instantiate<GameObject>(enemyPrefab,this.transform);
@@ -353,6 +359,7 @@ public class GameManager : MonoBehaviour
     public void PlayerWin()
     {
         SaveGameData();
+        Reset();
         SceneManager.LoadScene("GameClear");
     }
 
@@ -360,12 +367,13 @@ public class GameManager : MonoBehaviour
     {
         gameData.killCount = 0;
         SaveGameData();
+        Reset();
         SceneManager.LoadScene("GameOver");
     }
 
     public void Setting()
     {
-        CreatePooling();
+        GameObject.FindGameObjectWithTag("STAGEMANAGER").GetComponent<StageManager>().GameSetting();
         CreateEnemyPooling();
         Cursor.lockState = CursorLockMode.Confined;
     }   
@@ -374,7 +382,12 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = false;
         EnemyDieCount = 0;
-
+        foreach (var obj in EnemyPool)
+        {
+            obj.SetActive(false);
+            Destroy(obj);
+        }
+        EnemyPool.Clear();
     }
 
     void Update()

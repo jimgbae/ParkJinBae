@@ -685,8 +685,6 @@
       <Project>{B35F7246-8C5B-6DFA-57F1-56450F686BFE}</Project>      <Name>CommonAD</Name>    </ProjectReference>
     <ProjectReference Include="PlayerAD.csproj">
       <Project>{0CD42B5C-7F97-BEAE-C628-B43C0EACBE9D}</Project>      <Name>PlayerAD</Name>    </ProjectReference>
-    <ProjectReference Include="StageAD.csproj">
-      <Project>{FDC915A0-D167-5357-37B4-9B4E882BE132}</Project>      <Name>StageAD</Name>    </ProjectReference>
     <ProjectReference Include="OptionAD.csproj">
       <Project>{18BAF96C-727C-1529-40C4-A78B3BECF19E}</Project>      <Name>OptionAD</Name>    </ProjectReference>
     <ProjectReference Include="EnemyAD.csproj">

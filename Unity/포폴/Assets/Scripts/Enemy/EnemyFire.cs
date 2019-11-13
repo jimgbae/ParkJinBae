@@ -61,12 +61,10 @@ public class EnemyFire : MonoBehaviour
     //오브젝트 풀에 총알 생성 함수
     public void CreateEnemyBullet()
     {
-        GameObject objectPools = new GameObject("EnemyBullets");
-
         //풀링 개수만큼 미리 총알 생성
         for (int i = 0; i < maxPool; i++)
         {
-            var obj = Instantiate<GameObject>(bulletPrefab, objectPools.transform);
+            var obj = Instantiate<GameObject>(bulletPrefab, this.transform);
             obj.name = "Bullet" + i.ToString("00");
             obj.SetActive(false);
             //리스트에 총알 추가

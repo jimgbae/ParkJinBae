@@ -15,9 +15,22 @@ public class ScenesLoader : MonoBehaviour
 
     void InitSceneInfo()
     {
-        //호출할 씬 정보를 딕셔너리에 추가
-        loadScenes.Add("Level1", LoadSceneMode.Additive);
-        loadScenes.Add("Play", LoadSceneMode.Additive);
+        int StageNumber = 1;
+        switch (StageNumber)
+        {
+            case 1:
+                loadScenes.Add("Level1", LoadSceneMode.Additive);
+                loadScenes.Add("Play", LoadSceneMode.Additive);
+                break;
+            case 2:
+                loadScenes.Add("Level2", LoadSceneMode.Additive);
+                loadScenes.Add("Play", LoadSceneMode.Additive);
+                break;
+            case 3:
+                loadScenes.Add("Level3", LoadSceneMode.Additive);
+                loadScenes.Add("Play", LoadSceneMode.Additive);
+                break;
+        }
     }
 
     //코루틴

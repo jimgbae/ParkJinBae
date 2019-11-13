@@ -148,7 +148,7 @@ RectTransform:
   - {fileID: 656078681}
   - {fileID: 1091620935}
   m_Father: {fileID: 538016872}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -163,7 +163,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77822117}
   m_Enabled: 1
-  m_Alpha: 0.3
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -1484,8 +1484,8 @@ RectTransform:
   - {fileID: 1081876520}
   - {fileID: 1391370988}
   - {fileID: 2070300997}
-  - {fileID: 77822118}
   - {fileID: 1539823304}
+  - {fileID: 77822118}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4089,7 +4089,7 @@ RectTransform:
   m_Children:
   - {fileID: 403069496}
   m_Father: {fileID: 538016872}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -5194,11 +5194,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameOver: 0
+  isReset: 0
   bulletPrefab: {fileID: 2863183691931967646, guid: 64fc5ee5ab8a11b41b653e217c94ac4a,
     type: 3}
   maxPool: 20
   BulletPool: []
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 5103646888076427355, guid: d2e7a1ad560b7b4488de0fed6c0421cc,
+    type: 3}
   createTime: 2
   maxEnemy: 10
   EnemyPool: []
@@ -5214,7 +5216,6 @@ MonoBehaviour:
   KillCountText: {fileID: 1091620936}
   gameData:
     killCount: 0
-    level: 1
     exp: 0
     hp: 120
     damage: 25

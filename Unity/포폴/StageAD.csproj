@@ -53,9 +53,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Stage\BarrelCtrl.cs" />
-     <Compile Include="Assets\Scripts\Stage\MyGizmos.cs" />
-     <Compile Include="Assets\Scripts\Stage\RemoveBullet.cs" />
+     <Compile Include="Assets\Scripts\Common\Stage\BarrelCtrl.cs" />
+     <Compile Include="Assets\Scripts\Common\Stage\MyGizmos.cs" />
+     <Compile Include="Assets\Scripts\Common\Stage\RemoveBullet.cs" />
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
  </Reference>
