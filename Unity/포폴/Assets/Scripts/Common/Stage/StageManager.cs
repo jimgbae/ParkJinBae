@@ -14,12 +14,18 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
+        if(GameManager.instance != null)
+        {
+            GameManager.instance.Setting();
+            GameManager.instance.GameStart();
+        }
+        if (CanvasManager.instance != null)
+            CanvasManager.instance.OnCanvas();
     }
 
     public void GameSetting()
     {
         GameManager.instance.points = points;
         GameManager.instance.maxEnemy = StageEnemy;
-        GameManager.instance.Setting();
     }
 }

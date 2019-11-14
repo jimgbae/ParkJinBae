@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class ScenesLoader : MonoBehaviour
 {
+    //Stage이름을 저장할 변수
+    public string StageName;
+
     //CanvasGroup 컴포넌트를 저장할 변수
     public CanvasGroup fadeCG;
     //Fade IN 처리시간
@@ -15,22 +18,24 @@ public class ScenesLoader : MonoBehaviour
 
     void InitSceneInfo()
     {
-        int StageNumber = 1;
+        int StageNumber = 9;
         switch (StageNumber)
         {
+            case 9:
+                StageName = "TestMap";
+                break;
             case 1:
-                loadScenes.Add("Level1", LoadSceneMode.Additive);
-                loadScenes.Add("Play", LoadSceneMode.Additive);
+                StageName = "Level1";
                 break;
             case 2:
-                loadScenes.Add("Level2", LoadSceneMode.Additive);
-                loadScenes.Add("Play", LoadSceneMode.Additive);
+                StageName = "Level2";
                 break;
             case 3:
-                loadScenes.Add("Level3", LoadSceneMode.Additive);
-                loadScenes.Add("Play", LoadSceneMode.Additive);
+                StageName = "Level3";
                 break;
         }
+        loadScenes.Add(StageName, LoadSceneMode.Additive);
+        loadScenes.Add("Play", LoadSceneMode.Additive);
     }
 
     //코루틴
@@ -62,7 +67,7 @@ public class ScenesLoader : MonoBehaviour
     IEnumerator Fade(float finalAlpha)
     {
         //라이트맵이 깨지는것을 방지하기 위해 스테이지 씬 활성화
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Level1"));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(StageName));
         fadeCG.blocksRaycasts = true;
 
         //절대값 함수로 백분율 계산

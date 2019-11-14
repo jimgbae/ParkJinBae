@@ -15,26 +15,26 @@ public class EnemyAI : MonoBehaviour
     //상태 저장 변수
     public STATE state = STATE.STATE_PATROL;
     //공격, 추적 사정거리
-    public float attackDist = 5.0f;
-    public float traceDist = 10.0f;
+    public float attackDist = 10.0f;
+    public float traceDist = 15.0f;
     //죽음 판단 변수
     public bool isDie = false;
 
     //Player와 Enemy위치를 저장하는 변수
-    private Transform playerTr;
-    private Transform enemyTr;
+    public Transform playerTr;
+    public Transform enemyTr;
     //Animator 컴포넌트 저장 변수
-    private Animator animator;
+    public Animator animator;
     //코루틴에서 사용할 지연시간 변수
     private WaitForSeconds ws;
     //MoveAgent클래스 저장 변수
-    private MoveAgent moveagent;
+    public MoveAgent moveagent;
     //EnemyFire 클래스 저장 변수
-    private EnemyFire enemyFire;
+    public EnemyFire enemyFire;
     //EnemyFOV 클래스 저장 변수
-    private EnemyFOV enemyFOV;
+    public EnemyFOV enemyFOV;
     //PlayerLv 클래스 저장 변수
-    private PlayerLv playerLv;
+    public PlayerLv playerLv;
 
     //파라미터 해시값 추출
     private readonly int hashMove = Animator.StringToHash("isMove");
@@ -146,7 +146,7 @@ public class EnemyAI : MonoBehaviour
                         enemyFire.isFire = true;
                     break;
                 case STATE.STATE_DIE:
-                    isDie = true;
+                    isDie = true;   
                     playerLv.KillEnemy();
                     enemyFire.isFire = false;
                     moveagent.Stop();

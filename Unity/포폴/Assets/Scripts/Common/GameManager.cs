@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
         dataManager = GetComponent<DataManager>();
         dataManager.Initialize();
 
+        
         slotList = invenCG.transform.Find("SlotList").gameObject;
 
 
@@ -217,7 +218,12 @@ public class GameManager : MonoBehaviour
 
         Setting();
 
-        if (points.Length > 0)  
+        GameStart();
+    }
+
+    public void GameStart()
+    {
+        if (points.Length > 0)
         {
             StartCoroutine(this.CreateEnemy());
         }
@@ -381,7 +387,12 @@ public class GameManager : MonoBehaviour
     public void Reset()
     {
         isGameOver = false;
+        CanvasManager.instance.OffCanvas();
         EnemyDieCount = 0;
+        foreach(var obj in BulletPool)
+        {
+            obj.SetActive(false);
+        }
         foreach (var obj in EnemyPool)
         {
             obj.SetActive(false);
@@ -394,7 +405,10 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.I))
         {
-            OnInventoryOpen(true);
+            if (invenCG.alpha == 1.0f)
+                OnInventoryOpen(false);
+            else
+                OnInventoryOpen(true);
         }
     }
 }

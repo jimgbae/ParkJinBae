@@ -74,6 +74,14 @@ public class FireCtrl : MonoBehaviour
         enemyLayer = LayerMask.NameToLayer("ENEMY");
         obstacleLayer = LayerMask.NameToLayer("OBSTACLE");
         layerMask = 1 << obstacleLayer | 1 << enemyLayer;
+        Settings();
+    }
+
+    void Settings()
+    {
+        magazineImg = CanvasManager.instance.magazineImg;
+        magazineText = CanvasManager.instance.magazineText;
+        weaponImage = CanvasManager.instance.weaponImage;
     }
     
     void Update()
@@ -121,7 +129,7 @@ public class FireCtrl : MonoBehaviour
             }
         }
 
-        if (!isReloading && Input.GetKeyDown(KeyCode.R) && !isFire)
+        if (!isReloading && Input.GetKeyDown(KeyCode.R) && !isFire && remainingBullet != maxBullet)
         {
             StartCoroutine(Reloading());
         }

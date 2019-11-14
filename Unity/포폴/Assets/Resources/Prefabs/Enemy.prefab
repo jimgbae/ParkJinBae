@@ -212,14 +212,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5103646887729635527}
-  m_LocalRotation: {x: 0.058541495, y: -0.0424552, z: -0.0012445806, w: 0.99738103}
-  m_LocalPosition: {x: -0.155, y: 0.073, z: 0.89}
+  m_LocalRotation: {x: 0.10649141, y: -0.001822556, z: 0.017014742, w: 0.9941664}
+  m_LocalPosition: {x: -0.11100359, y: 0.010003798, z: 0.88600016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5103646887760127578}
   m_Father: {fileID: 5103646888051886619}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 6.7, y: -4.9, z: -0.43}
+  m_LocalEulerAnglesHint: {x: 12.228001, y: 0, z: 1.9610001}
 --- !u!1 &5103646887760127581
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,9 +700,11 @@ MonoBehaviour:
   isFire: 0
   fireSfx: {fileID: 8300000, guid: 3988c7241ff434c2a900f22726ee7a08, type: 3}
   reloadSfx: {fileID: 8300000, guid: fadf80bb36a4b4b11956cd0e19f9a859, type: 3}
-  Bullet: {fileID: 6191043140128083047, guid: dfe95379b28518940b59505b182d1db7, type: 3}
   firePos: {fileID: 5103646887729635526}
   muzzleFlash: {fileID: 5103646887760127580}
+  bulletPrefab: {fileID: 0}
+  maxPool: 10
+  BulletPool: []
 --- !u!114 &5103646888076427330
 MonoBehaviour:
   m_ObjectHideFlags: 0

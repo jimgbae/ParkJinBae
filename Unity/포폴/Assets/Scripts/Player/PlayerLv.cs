@@ -10,15 +10,14 @@ public class PlayerLv : MonoBehaviour
     public int Level;
 
     //Player 경험치
-    private float MaxEXP = 100.0f;
+    private float MaxEXP = 500.0f;
     private float SaveEXP;
     public float currEXP;
 
     //Enemy 처치시 경험치
     public float KillExp = 10.0f;
 
-    //EXP Image, Text
-    public Image expBar;
+    //EXP Text
     public Text ExpText;
 
     private readonly Color initColor = new Vector4(0.0f,1.0f,0.0f,1.0f);
@@ -28,25 +27,12 @@ public class PlayerLv : MonoBehaviour
 
     void Start()
     {
+        ExpText = CanvasManager.instance.ExpText;
         //GameData에서 레벨 , 경험치 불러오기
         SaveEXP = GameManager.instance.gameData.exp;
-        MaxExpSetting();
         LvSetting();
-
-        expBar.color = initColor;
+        
         currColor = initColor;
-    }
-
-    void MaxExpSetting()
-    {
-        if(SaveEXP / MaxEXP >= 10 && SaveEXP / MaxEXP < 20)
-        {
-            MaxEXP = 500.0f;
-        }
-        else if(SaveEXP / MaxEXP >= 20 && SaveEXP / MaxEXP < 30)
-        {
-            MaxEXP = 1300.0f;
-        }
     }
 
     void LvSetting()
@@ -65,12 +51,6 @@ public class PlayerLv : MonoBehaviour
         currEXP += 10.0f;
         GameManager.instance.IncExp(KillExp);
         UpdateExpText();
-    }
-
-    void DisplayExpbar()
-    {
-        expBar.color = initColor;   
-        expBar.fillAmount = (currEXP / MaxEXP);
     }
 
     //경험치 Text를 표현하는 함수

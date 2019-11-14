@@ -9,6 +9,8 @@ TagManager:
   - E_BULLET
   - ENEMY
   - STAGEMANAGER
+  - INVENTORY
+  - ITEMLIST
   layers:
   - Default
   - TransparentFX

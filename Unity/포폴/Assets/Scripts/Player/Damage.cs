@@ -35,6 +35,8 @@ public class Damage : MonoBehaviour
 
     void Start()
     {
+        hpBar = CanvasManager.instance.hpBar;
+        bloodScreen = CanvasManager.instance.bloodScreen;
 
         initHp = GameManager.instance.gameData.hp;
         currHp = initHp;
