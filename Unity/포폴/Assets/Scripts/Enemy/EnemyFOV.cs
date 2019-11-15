@@ -18,7 +18,7 @@ public class EnemyFOV : MonoBehaviour
     void Start()
     {
         enemyTr = GetComponent<Transform>();
-        playerTr = GameObject.FindGameObjectWithTag("PLAYER").transform;
+        playerTr = GameManager.instance.Player.transform;
 
         playerLayer = LayerMask.NameToLayer("PLAYER");
         obstacleLayer = LayerMask.NameToLayer("OBSTACLE");

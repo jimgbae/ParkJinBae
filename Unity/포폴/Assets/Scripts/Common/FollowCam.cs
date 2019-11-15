@@ -26,6 +26,7 @@ public class FollowCam : MonoBehaviour
 
     void Start()
     {
+        target = GameManager.instance.Player.transform;
         //CameraManager의 Transform 컴포넌트 추출
         tr = GetComponent<Transform>();
         //최초 카메라 높이 저장

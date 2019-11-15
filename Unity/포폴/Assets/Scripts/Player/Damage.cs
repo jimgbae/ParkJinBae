@@ -90,4 +90,12 @@ public class Damage : MonoBehaviour
         hpBar.color = currColor;
         hpBar.fillAmount = (currHp / initHp);
     }
+
+    void LateUpdate()
+    {
+        if (GameManager.instance.isResetPlayer)
+        {
+            currHp = initHp;
+        }
+    }
 }

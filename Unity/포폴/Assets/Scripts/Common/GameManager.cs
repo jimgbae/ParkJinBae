@@ -7,6 +7,12 @@ using DataInfo;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject PlayerPrefab;
+    public Transform PlayerSpawn;
+    public GameObject Player;
+    public bool isResetPlayer = false;
+    public Shake shake;
+
     //게임 종료 판단 변수
     public bool isGameOver = false;
     //게임 리셋 판단 변수
@@ -69,6 +75,12 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+
+        PlayerPrefab = (Resources.Load("Prefabs/Player")) as GameObject;
+        Player = Instantiate<GameObject>(PlayerPrefab, this.transform);
+        Player.SetActive(false);
+
+        shake = GetComponent<Shake>();
 
         dataManager = GetComponent<DataManager>();
         dataManager.Initialize();
@@ -213,10 +225,10 @@ public class GameManager : MonoBehaviour
         stageM = GetComponent<StageManager>();
         //처음 인벤토리 비활성화
         OnInventoryOpen(false);
-        
-        SetText();
 
         Setting();
+
+        SetText();
 
         GameStart();
     }
@@ -380,13 +392,25 @@ public class GameManager : MonoBehaviour
     public void Setting()
     {
         GameObject.FindGameObjectWithTag("STAGEMANAGER").GetComponent<StageManager>().GameSetting();
+        PlayerSetting();
         CreateEnemyPooling();
         Cursor.lockState = CursorLockMode.Confined;
-    }   
+    }
+
+    public void PlayerSetting()
+    {
+        isResetPlayer = false;
+        if (Player != null)
+        {
+            Player.transform.position = PlayerSpawn.position;
+            Player.SetActive(true);
+        }
+    }
 
     public void Reset()
     {
         isGameOver = false;
+        isResetPlayer = true;
         CanvasManager.instance.OffCanvas();
         EnemyDieCount = 0;
         foreach(var obj in BulletPool)
@@ -398,6 +422,7 @@ public class GameManager : MonoBehaviour
             obj.SetActive(false);
             Destroy(obj);
         }
+        Player.SetActive(false);
         EnemyPool.Clear();
     }
 

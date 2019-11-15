@@ -48,8 +48,7 @@ public class EnemyAI : MonoBehaviour
     void Awake()
     {
         //Player GameObject 추출
-        var player = GameObject.FindGameObjectWithTag("PLAYER");
-
+        var player = GameManager.instance.Player;
         //Player와 Enemy의 Transform 추출
         if (player != null)
         {

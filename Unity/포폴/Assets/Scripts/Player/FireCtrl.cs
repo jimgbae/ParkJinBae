@@ -35,7 +35,7 @@ public class FireCtrl : MonoBehaviour
     public PlayerSfx playersfx;
 
     //Shake클래스 저장 변수
-    private Shake shake;
+    public Shake shake;
 
     //탄창 Image UI와 남은 총알 수 Text UI
     public Image magazineImg;
@@ -70,7 +70,7 @@ public class FireCtrl : MonoBehaviour
         muzzleFlash = firePos.GetComponentInChildren<ParticleSystem>();
         _audio = GetComponent<AudioSource>();
         bullet = (Resources.Load("Prefabs/Bullet")) as GameObject;
-        shake = GameObject.Find("CameraManager").GetComponent<Shake>();
+        shake = GameManager.instance.shake;
         enemyLayer = LayerMask.NameToLayer("ENEMY");
         obstacleLayer = LayerMask.NameToLayer("OBSTACLE");
         layerMask = 1 << obstacleLayer | 1 << enemyLayer;
@@ -109,7 +109,7 @@ public class FireCtrl : MonoBehaviour
             {
                 --remainingBullet;
                 Fire();
-                if(remainingBullet == 0)
+                if(remainingBullet == 0 && Input.GetKeyDown(KeyCode.R))
                 {
                     StartCoroutine(Reloading());
                 }
@@ -118,12 +118,12 @@ public class FireCtrl : MonoBehaviour
             }
         }
 
-        if(!isReloading &&Input.GetMouseButtonDown(0))
+        if(!isReloading && Input.GetMouseButtonDown(0))
         {
             --remainingBullet;
             Fire();
 
-            if(remainingBullet == 0)
+            if(remainingBullet == 0 && Input.GetKeyDown(KeyCode.R))
             {
                 StartCoroutine(Reloading());
             }
@@ -188,5 +188,14 @@ public class FireCtrl : MonoBehaviour
     {
         currWeapon = (WEAPON)((int)++currWeapon % 2);
         weaponImage.sprite = weaponIcons[(int)currWeapon];
+    }
+
+    void LateUpdate()
+    {
+        if(GameManager.instance.isResetPlayer)
+        {
+            isReloading = false;
+            remainingBullet = maxBullet;
+        }
     }
 }

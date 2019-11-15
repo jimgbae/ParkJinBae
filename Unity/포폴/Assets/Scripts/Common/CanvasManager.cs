@@ -7,7 +7,6 @@ public class CanvasManager : MonoBehaviour
 {
 
     public GameObject Playcanvas;
-
     public static CanvasManager instance = null;
 
 

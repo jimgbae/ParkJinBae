@@ -75,7 +75,7 @@ public class EnemyFire : MonoBehaviour
     void Start()
     {
         //컴포넌트 추출 및 저장
-        playerTr = GameObject.FindGameObjectWithTag("PLAYER").GetComponent<Transform>();
+        playerTr = GameManager.instance.Player.transform;
         enemyTr = GetComponent<Transform>();
         _animator = GetComponent<Animator>();
         _audio = GetComponent<AudioSource>();

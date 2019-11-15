@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Player\FireCtrl.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerCtrl.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerLv.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
  </Reference>

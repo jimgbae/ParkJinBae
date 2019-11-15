@@ -6,6 +6,7 @@ public class StageManager : MonoBehaviour
 {
     public int StageEnemy = 11;
     public Transform[] points;
+    public Transform Playerpoints;
 
     void Awake()
     {
@@ -14,7 +15,7 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        if(GameManager.instance != null)
+        if (GameManager.instance != null)
         {
             GameManager.instance.Setting();
             GameManager.instance.GameStart();
@@ -25,6 +26,7 @@ public class StageManager : MonoBehaviour
 
     public void GameSetting()
     {
+        GameManager.instance.PlayerSpawn = Playerpoints;
         GameManager.instance.points = points;
         GameManager.instance.maxEnemy = StageEnemy;
     }
