@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public Transform PlayerSpawn;
     public GameObject Player;
     public bool isResetPlayer = false;
-    public Shake shake;
 
     //게임 종료 판단 변수
     public bool isGameOver = false;
@@ -79,8 +78,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefab = (Resources.Load("Prefabs/Player")) as GameObject;
         Player = Instantiate<GameObject>(PlayerPrefab, this.transform);
         Player.SetActive(false);
-
-        shake = GetComponent<Shake>();
 
         dataManager = GetComponent<DataManager>();
         dataManager.Initialize();

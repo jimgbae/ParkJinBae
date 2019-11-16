@@ -5,9 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    //CanvasGroup 저장 변수
     public CanvasGroup CreditCG;
     public CanvasGroup StageCG;
+    //씬 이동 번호 저장 변수
     public int StageNumber;
+
+    //UIManager를 Singleton으로 접근하기 위해 만든 static변수
+    public static UIManager instance = null;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     void Start()
     {

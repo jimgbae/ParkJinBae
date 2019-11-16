@@ -34,9 +34,6 @@ public class FireCtrl : MonoBehaviour
     private AudioSource _audio;
     public PlayerSfx playersfx;
 
-    //Shake클래스 저장 변수
-    public Shake shake;
-
     //탄창 Image UI와 남은 총알 수 Text UI
     public Image magazineImg;
     public Text magazineText;
@@ -70,7 +67,6 @@ public class FireCtrl : MonoBehaviour
         muzzleFlash = firePos.GetComponentInChildren<ParticleSystem>();
         _audio = GetComponent<AudioSource>();
         bullet = (Resources.Load("Prefabs/Bullet")) as GameObject;
-        shake = GameManager.instance.shake;
         enemyLayer = LayerMask.NameToLayer("ENEMY");
         obstacleLayer = LayerMask.NameToLayer("OBSTACLE");
         layerMask = 1 << obstacleLayer | 1 << enemyLayer;
@@ -137,8 +133,6 @@ public class FireCtrl : MonoBehaviour
 
     void Fire()
     {
-        //Shake효과 호출
-        StartCoroutine(shake.ShakeCamera(0.05f,0.1f,0.25f));
         var _bullet = GameManager.instance.GetBullet();
         if(_bullet != null)
         {

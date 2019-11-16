@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 548}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -95,8 +95,8 @@ MonoBehaviour:
     y: 0
     width: 384
     height: 580
-  m_MinSize: {x: 202, y: 224}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -268,14 +268,14 @@ MonoBehaviour:
     height: 580
   m_MinSize: {x: 204, y: 224}
   m_MaxSize: {x: 4004, y: 4024}
-  m_ActualView: {fileID: 21}
+  m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
   - {fileID: 21}
   - {fileID: 16}
   - {fileID: 15}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 95862
+  m_LastSelectedObjectID: 4574
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -556,20 +556,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Images/SkyBox Volume 2/DeepsSpaceRedWithPlanet
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Images/SkyBox Volume 2/DeepsSpaceRedWithPlanet
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "C:\\work\\ParkJinBae\\Unity\\\uD3EC\uD3F4"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 197}
-    m_SelectedIDs: 0e0f0000
-    m_LastClickedID: 3854
-    m_ExpandedIDs: 00000000400a0000200b00009a0b00003e0c0000480d0000a80d0000ca0d0000d00d0000f80d00000a0e0000a20e00000e0f0000a20f0000b00f0000a4100000c610000032110000d02f0000d22f0000d42f0000d62f0000d82f000000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 5e0f0000
+    m_LastClickedID: 3934
+    m_ExpandedIDs: 00000000440a0000240b00009e0b0000420c00004c0d0000ac0d0000ce0d0000d40d0000fc0d00000e0e0000a60e0000120f0000a60f0000b40f0000a8100000ca10000036110000d42f0000d62f0000d82f0000da2f0000dc2f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -597,7 +597,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000400a0000200b00009a0b00003e0c0000480d0000a80d0000ca0d0000d00d0000f80d00000a0e0000a20e00000e0f0000a20f0000b00f0000a4100000c610000032110000d02f0000d22f0000d42f0000d62f0000d82f0000
+    m_ExpandedIDs: 00000000440a0000240b00009e0b0000420c00004c0d0000ac0d0000ce0d0000d40d0000fc0d00000e0e0000a60e0000120f0000a60f0000b40f0000a8100000ca10000036110000d42f0000d62f0000d82f0000da2f0000dc2f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -641,7 +641,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 11}
+      m_ClientGUIView: {fileID: 5}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -716,23 +716,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e87a0100
-      m_LastClickedID: 97000
-      m_ExpandedIDs: 3c46fdff2448fdff9273fdff3889fdff468bfdff98acfdff00aefdff86b4fdffecb7fdff38bdfdff9ec0fdffa2c0fdff92c8fdfffac8fdff40cbfdff5accfdff461dfeff6024feff9039feff023afeffc83bfeffe23bfeff8645feffee46feff207efeff887ffeffa089feffd291feff3a93feffb098feff189afeff929afeff4c9cfeff8ca1fefff4a2feff88a9fefff0aafeffe2b2fefff6b8feff5ebafeffaebffeff74c8feffe6cbfeff68d4feff72d6feffd2d9feffeee1feff62f1feff8cf2feff9af6feff06f8feffcafdfeff1201ffffd202ffff3a04ffffb605ffff8024ffffe825ffff5026ffff2e28ffff5e3cffffb43ffffff842ffff504cffff284effffa654ffffa854ffff4e5cffff8e5fffffca65ffff846cffff546effffcc77ffff6884fffffe8dffff0897ffffb6afffff96c1ffffa8cbffff82d7ffff78dfffff08f9ffffd6fbfffff4ffffff724500006e500000a8570000e65e0000827400008e7400009a7c00002a7d000082880000508c0000a49100001495000084980000fc9c0000de9f0000e6a8000060a9000072b70000e0c10000d2d50000c6d7000046e30000c0e30000dcf3000020fb00002e060100ac0a0100260b010066110100aa1801008c1a0100061b0100ee1f010032270100762e0100204e0100b44e0100a65201003a530100b8560100085d0100e068010070690100
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: c052feff7060feff4066feffae67feffb409ffff760fffffca18fffff03cffff245dffff5063ffffe864ffffac68ffff6c6effffd480ffffac86ffff2c88ffff0c8effffe29affff0a9bffffcea0fffff0a0ffff5aa2ffffcaa3ffff98a9ffff6cb9ffff70b9ffffbcb9ffff2ed4ffff82edffffc4f1ffff92f9ffffd6fbfffff4ffffff861200009a120000a2120000b0320000464000006e530000e8530000ba540000d2570000c05e0000fe5e0000325f00005a5f00008a5f00009e5f0000a65f0000d0700000f070000018710000487100005c71000064710000ec830000488400000e8700001e880000deae00002caf0000beaf000012b0000076b00000e6b100006ec6000082c600008ac60000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: BakedLight
+        m_OriginalName: BakedLight
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 45174
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 4}
       m_SearchString: 
@@ -773,9 +773,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 5.622675, y: 1.336998, z: -1.6255112}
+    m_Target: {x: 2.1432805, y: 17.364367, z: 28.56522}
     speed: 2
-    m_Value: {x: 5.622675, y: 1.336998, z: -1.6255112}
+    m_Value: {x: 2.1432805, y: 17.364367, z: 28.56522}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -803,13 +803,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.29431042, y: -0.55810636, z: 0.22085893, w: -0.7437205}
+    m_Target: {x: -0.10804211, y: 0.035822768, z: -0.0038948425, w: -0.9934931}
     speed: 2
-    m_Value: {x: -0.29431042, y: -0.55810636, z: 0.22085893, w: -0.7437205}
+    m_Value: {x: -0.10804211, y: 0.035822768, z: -0.0038948425, w: -0.9934931}
   m_Size:
-    m_Target: 22
+    m_Target: 8.344614
     speed: 2
-    m_Value: 22
+    m_Value: 8.344614
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -869,7 +869,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1

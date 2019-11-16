@@ -18,8 +18,8 @@ public class ScenesLoader : MonoBehaviour
 
     void InitSceneInfo()
     {
-        int StageNumber = 9;
-        switch (StageNumber)
+        int Number = UIManager.instance.StageNumber;
+        switch (Number)
         {
             case 9:
                 StageName = "TestMap";
