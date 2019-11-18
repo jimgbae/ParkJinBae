@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemyFOV : MonoBehaviour
 {
     //Enemy의 추적 사정거리 범위와 시야각
-    public float viewRange = 15.0f;
+    public float viewRange = 20.0f;
     [Range(0, 360)]
-    public float viewAngle = 120.0f;
+    public float viewAngle = 180.0f;
 
     private Transform enemyTr;
     private Transform playerTr;

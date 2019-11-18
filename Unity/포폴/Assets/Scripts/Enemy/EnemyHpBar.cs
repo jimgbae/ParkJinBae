@@ -45,6 +45,7 @@ public class EnemyHpBar : MonoBehaviour
     
     void Update()
     {
-        
+        if (GameManager.instance.isGameOver)
+            Destroy(this.gameObject);
     }
 }

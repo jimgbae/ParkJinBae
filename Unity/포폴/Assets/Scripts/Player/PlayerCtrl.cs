@@ -19,9 +19,12 @@ public class PlayerCtrl : MonoBehaviour
     private float h = 0.0f;
     private float v = 0.0f;
     private float r = 0.0f;
+    private float y = 0.0f;
+
+    private int DEXDexterity;
 
     private Transform tr;
-    public float moveSpeed = 10.0f;
+    public float moveSpeed;
     public float rotSpeed = 80.0f;
 
     //애니메이션 클래스 변수
@@ -41,6 +44,7 @@ public class PlayerCtrl : MonoBehaviour
     void UpdateSetup()
     {
         moveSpeed = GameManager.instance.gameData.speed;
+        DEXDexterity = GameManager.instance.gameData.Dexterity;
     }
 
     void Start()
@@ -62,6 +66,7 @@ public class PlayerCtrl : MonoBehaviour
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
         r = Input.GetAxis("Mouse X");
+        y = Input.GetAxis("Mouse Y");
 
         //이동 Vector계산
         Vector3 Move = (Vector3.forward * v) + (Vector3.right * h);
@@ -71,6 +76,7 @@ public class PlayerCtrl : MonoBehaviour
 
         //Rotate로 Vector3.up기준으로 rotSpeep만큼 속도회전
         tr.Rotate(Vector3.up * rotSpeed * Time.deltaTime * r);
+        tr.Rotate(Vector3.up * rotSpeed * Time.deltaTime * y);
 
         if(v >= 0.1f)
         {

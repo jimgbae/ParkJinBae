@@ -8,7 +8,7 @@ public class FollowCam : MonoBehaviour
     public float moveDamping = 15.0f;               //이동 속도
     public float rotateDamping = 5.0f;              //회전 속도
     public float dist = 5.0f;                      //추적 대상과의 거리
-    public float height = 5.0f;                     //추적 대상과의 높이
+    public float height = 3.0f;                     //추적 대상과의 높이
     public float targetOffset = 2.0f;               //추적 좌표 오프셋
 
     [Header("Wall Obstacle Setting")]

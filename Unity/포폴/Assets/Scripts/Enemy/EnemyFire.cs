@@ -86,6 +86,8 @@ public class EnemyFire : MonoBehaviour
     
     void Update()
     {
+        Debug.DrawRay(firePos.position, firePos.forward * 20.0f, Color.green);
+
         if (!isReload && isFire)
         {
             if(Time.time >= nextFire)

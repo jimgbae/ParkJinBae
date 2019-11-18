@@ -36,10 +36,13 @@ public class GameManager : MonoBehaviour
 
     //Enemy 스폰지역 위치 변수
     public Transform[] points;
-    //게임 멈춤 판단 변수
+    //게임 멈춤 판단 변수ㅔ
     public bool isPaused;
     //Inventory의 CanvasGroup 컴포넌트 저장 변수
     public CanvasGroup invenCG;
+
+    //스텟 관리창 컴포넌트 저장 변수
+    public CanvasGroup StateCG;
 
     //Player가 Enemy를 죽인 횟수
     public int EnemyDieCount = 0;
@@ -103,6 +106,9 @@ public class GameManager : MonoBehaviour
         gameData.damage = data.damage;
         gameData.speed = data.speed;
         gameData.killCount = data.killCount;
+        gameData.Strength = data.Strength;
+        gameData.Dexterity = data.Dexterity;
+        gameData.Constitution = data.Constitution;
         gameData.equipItem = data.equipItem;
 
         if (gameData.equipItem.Count > 0)
@@ -222,6 +228,8 @@ public class GameManager : MonoBehaviour
         stageM = GetComponent<StageManager>();
         //처음 인벤토리 비활성화
         OnInventoryOpen(false);
+        //처음 스탯창 비활성화
+        OnStatOpen(false);
 
         Setting();
 
@@ -324,6 +332,13 @@ public class GameManager : MonoBehaviour
         invenCG.alpha = (isOpened) ? 1.0f : 0.0f;
         invenCG.interactable = isOpened;
         invenCG.blocksRaycasts = isOpened;
+    }
+
+    public void OnStatOpen(bool isOpened)
+    {
+        StateCG.alpha = (isOpened) ? 1.0f : 0.0f;
+        StateCG.interactable = isOpened;
+        StateCG.blocksRaycasts = isOpened;
     }
 
     public void IncKillCount()

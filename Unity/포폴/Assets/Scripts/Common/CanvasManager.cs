@@ -24,6 +24,14 @@ public class CanvasManager : MonoBehaviour
     //EXP Text
     public Text ExpText;
 
+    //Stat
+    public Text HP;
+    public Text Speed;
+    public Text Damage;
+    public Text STR;
+    public Text DEX;
+    public Text CON;
+
     void Awake()
     {
         if (instance == null)
@@ -46,9 +54,5 @@ public class CanvasManager : MonoBehaviour
     public void OffCanvas()
     {
         Playcanvas.SetActive(false);
-    }
-
-    void Start()
-    {
     }
 }

@@ -19,7 +19,6 @@ public class FireCtrl : MonoBehaviour
         WEAPON_RIFLE = 0,
         WEAPON_SHOTGUN
     }
-
     public WEAPON currWeapon = WEAPON.WEAPON_RIFLE;
 
     //총알 프리팹, 발사 좌표
@@ -45,6 +44,8 @@ public class FireCtrl : MonoBehaviour
     public float reloadTime = 2.0f;
     //재장전 여부 판단 변수
     public bool isReloading = false;
+    //총알 사거리 시간
+    public float lifeTime = 3.0f;
 
     //변경할 무기 Image와 교체할 무기 Image UI
     public Sprite[] weaponIcons;
@@ -85,12 +86,13 @@ public class FireCtrl : MonoBehaviour
         Debug.DrawRay(firePos.position, firePos.forward * 20.0f, Color.green);
 
         if (EventSystem.current.IsPointerOverGameObject()) return;
-
+        
         //레이캐스트에 검출된 객체 정보 저장 변수
         RaycastHit hit;
         //레이캐스트로 적 검출 ( 광선의 발사 원점 좌표, 광선 발사 방향 백터, 검출된 객체의 정보 반환 변수, 광선 도달 거리, 검출할 레이어 )
-        if (Physics.Raycast(firePos.position, firePos.forward, out hit, 20.0f, layerMask))
+        if (Physics.Raycast(firePos.position, transform.forward, out hit, 20.0f, layerMask))
         {
+
             isFire = (hit.collider.CompareTag("ENEMY"));
         }
         else
@@ -99,33 +101,33 @@ public class FireCtrl : MonoBehaviour
         }
 
         //레이캐스트가 Enemy에 닿았을 시 자동 발사
-        if(!isReloading && isFire)
+        if(!isReloading && isFire && remainingBullet > 0)
         {
             if(Time.time > nextFire)
             {
                 --remainingBullet;
                 Fire();
-                if(remainingBullet == 0 && Input.GetKeyDown(KeyCode.R))
-                {
-                    StartCoroutine(Reloading());
-                }
-
                 nextFire = Time.time + fireRate;
             }
         }
 
-        if(!isReloading && Input.GetMouseButtonDown(0))
+        if(!isReloading && Input.GetMouseButtonDown(0) && remainingBullet > 0)
         {
             --remainingBullet;
             Fire();
+        }
 
-            if(remainingBullet == 0 && Input.GetKeyDown(KeyCode.R))
-            {
-                StartCoroutine(Reloading());
-            }
+        if (remainingBullet == 0 && Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(Reloading());
         }
 
         if (!isReloading && Input.GetKeyDown(KeyCode.R) && !isFire && remainingBullet != maxBullet)
+        {
+            StartCoroutine(Reloading());
+        }
+
+        if (isReloading == true)
         {
             StartCoroutine(Reloading());
         }
@@ -137,7 +139,7 @@ public class FireCtrl : MonoBehaviour
         if(_bullet != null)
         {
             _bullet.transform.position = firePos.position;
-            _bullet.transform.rotation = firePos.rotation;
+            _bullet.transform.rotation = transform.rotation;
             _bullet.SetActive(true);
         }
         //탄피 추출 파티클 실행
