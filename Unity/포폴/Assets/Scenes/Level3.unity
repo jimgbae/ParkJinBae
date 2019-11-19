@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 2
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 9043a5aef9a9d85419962075f484ea10, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: dcd604c94928c9b4fbd6c0ccdf9bd476, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.119149886, g: 0.15470845, b: 0.1182419, a: 1}
+  m_IndirectSpecularColor: {r: 0.19699422, g: 0.081087224, b: 0.036641512, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -88,7 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000000, guid: 4a958ca3b99631c4587919152c09c806,
+  m_LightingDataAsset: {fileID: 112000000, guid: 1206dac8073462b4f8083ef4fff2c2e5,
     type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -112,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 891f847ce0f758d4a8b57306322c7fe7, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a3c210a544bc0764ebd443ffaa7e5cf1, type: 2}
 --- !u!1 &2949064
 GameObject:
   m_ObjectHideFlags: 0

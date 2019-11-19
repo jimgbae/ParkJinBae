@@ -6,7 +6,7 @@ public class FollowCam : MonoBehaviour
 {
     public Transform target;                        //추적 대상
     public float moveDamping = 15.0f;               //이동 속도
-    public float rotateDamping = 5.0f;              //회전 속도
+    public float rotateDamping = 15.0f;              //회전 속도
     public float dist = 5.0f;                      //추적 대상과의 거리
     public float height = 3.0f;                     //추적 대상과의 높이
     public float targetOffset = 2.0f;               //추적 좌표 오프셋
@@ -44,30 +44,37 @@ public class FollowCam : MonoBehaviour
         //카메라 추적 대상으로 Z축 회전
         tr.LookAt(target.position + (target.up * targetOffset));
     }
-    
+ 
     void Update()
     {
+        //구체 형태의 충돌체로 충돌 여부 검사
         if(Physics.CheckSphere(tr.position, colliderRadius))
         {
+            //보간 함수를 사용해 부드럽게 상승
             height = Mathf.Lerp(height, heightAboveWall, Time.deltaTime * overDamping);
         }
         else
         {
+            //보간 함수를 사용해 부드럽게 하강
             height = Mathf.Lerp(height, originHeight, Time.deltaTime * overDamping);
         }
-
+        //Player가 장에물에 가려졌는지 판단할 레이캐스트 높낮이 설정
         Vector3 castTarget = target.position + (target.up * castOffset);
+        //castTarget좌표 방향 벡터 계산
         Vector3 castDir = (castTarget - tr.position).normalized;
         RaycastHit hit;
 
-        if(Physics.Raycast(tr.position, castDir, out hit, Mathf.Infinity))
+        Debug.DrawRay(tr.position, castDir * 20.0f, Color.green);
+        if (Physics.Raycast(tr.position, castDir, out hit, Mathf.Infinity))
         {
             if(!hit.collider.CompareTag("PLAYER"))
             {
+                //보간 함수를 사용해 부드럽게 상승
                 height = Mathf.Lerp(height, heightAboveObstacle, Time.deltaTime * overDamping);
             }
             else
             {
+                //보간 함수를 사용해 부드럽게 하강
                 height = Mathf.Lerp(height, originHeight, Time.deltaTime * overDamping);
             }
         }

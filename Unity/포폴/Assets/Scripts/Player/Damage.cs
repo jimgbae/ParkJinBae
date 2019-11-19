@@ -79,8 +79,12 @@ public class Damage : MonoBehaviour
 
     void PlayerDie()
     {
-        OnPlayerDie();
         currHp = initHp;
+        bloodScreen.color = Color.clear;
+        hpBar.color = initColor;
+        currColor = initColor;
+        DisplayHpbar();
+        OnPlayerDie();
         GameManager.instance.PlayerDie();
         GameManager.instance.isGameOver = true;
     }
@@ -94,10 +98,6 @@ public class Damage : MonoBehaviour
 
         hpBar.color = currColor;
         hpBar.fillAmount = (currHp / initHp);
-    }
-
-    void LateUpdate()
-    {
     }
 
     void Update()

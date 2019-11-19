@@ -50,9 +50,9 @@ public class GameManager : MonoBehaviour
     //힘
     private Text STRText;
     //민첩
-    public Text DEXText;
+    private Text DEXText;
     //채력
-    public Text CONText;
+    private Text CONText;
 
     //Player가 Enemy를 죽인 횟수
     public int EnemyDieCount = 0;
@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour
     //Stat변화 시 발생시킬 이벤트 정의
     public delegate void StatChangeDelegate();
     public static event StatChangeDelegate OnStatChange;
+
+    public CanvasGroup PauseCG;
 
 
     void Awake()
@@ -250,6 +252,8 @@ public class GameManager : MonoBehaviour
         //처음 스탯창 비활성화
         OnStatOpen(false);
 
+        OnESCBtn(false);
+
         Setting();
 
         SetText();
@@ -259,6 +263,9 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        OnESCBtn(false);
         if (points.Length > 0)
         {
             StartCoroutine(this.CreateEnemy());
@@ -267,8 +274,7 @@ public class GameManager : MonoBehaviour
 
     void SetText()
     {
-        var KillCount = (Resources.Load("Prefabs/KillCount")) as GameObject;
-        KillCountText = KillCount.GetComponent<Text>();
+        KillCountText = CanvasManager.instance.KillCount;
     }
 
     //오브젝트 풀에서 사용 가능한 총알을 가져오는 함수
@@ -363,7 +369,7 @@ public class GameManager : MonoBehaviour
     public void IncKillCount()
     {
         ++gameData.killCount;
-        KillCountText.text = "KILL " + gameData.killCount.ToString("0000");
+        KillCountText.text = string.Format("KILL {0}", gameData.killCount);
     }
 
     public void IncExp(float Exp)
@@ -441,6 +447,10 @@ public class GameManager : MonoBehaviour
 
     public void Reset()
     {
+        if (isPaused == true)
+            OnPauseClick();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         isGameOver = false;
         isResetPlayer = true;
         CanvasManager.instance.OffCanvas();
@@ -465,17 +475,51 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (invenCG.alpha == 1.0f)
+            {
                 OnInventoryOpen(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
             else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 OnInventoryOpen(true);
+ }
         }
 
         if(Input.GetKeyDown(KeyCode.E))
         {
             if (StateCG.alpha == 1.0f)
+            {
                 OnStatOpen(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
             else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 OnStatOpen(true);
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isPaused)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                OnESCBtn(true);
+                OnPauseClick();
+            }
+            else
+            {
+                OnPauseClick();
+                OnESCBtn(false);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
 
         if (StateCG.alpha == 1.0f && gameData.Status > 0)
@@ -550,5 +594,25 @@ public class GameManager : MonoBehaviour
     void UpdateCONText()
     {
         CONText.text = string.Format("{0}", gameData.Constitution);
+    }
+
+    public void OnESCBtn(bool isOpened)
+    {
+        if (isPaused == true)
+        {
+            OnPauseClick();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        PauseCG.alpha = (isOpened) ? 1.0f : 0.0f;
+        PauseCG.interactable = isOpened;
+        PauseCG.blocksRaycasts = isOpened;
+    }
+
+    public void OnLobbyBtn()
+    {
+        OnPauseClick();
+        Reset();
+        SceneManager.LoadScene("Main");
     }
 }

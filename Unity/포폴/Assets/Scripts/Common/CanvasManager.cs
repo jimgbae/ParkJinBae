@@ -16,6 +16,9 @@ public class CanvasManager : MonoBehaviour
     //총기 Image
     public Image weaponImage;
 
+    //Kill Count
+    public Text KillCount;
+
     //BloodScreen 텍스처 저장 변수
     public Image bloodScreen;
 

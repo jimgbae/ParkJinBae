@@ -734,7 +734,11 @@ MonoBehaviour:
 
     RELOAD : R
 
-    INVENTORY : I'
+    INVENTORY : I
+
+    STATUS : E
+
+    PAUSE : ESC'
 --- !u!222 &873616844
 CanvasRenderer:
   m_ObjectHideFlags: 0
