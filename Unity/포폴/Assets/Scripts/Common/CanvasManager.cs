@@ -28,6 +28,7 @@ public class CanvasManager : MonoBehaviour
     public Text HP;
     public Text Speed;
     public Text Damage;
+    public Text Stat;
     public Text STR;
     public Text DEX;
     public Text CON;

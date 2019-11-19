@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //인스펙터 뷰 노출
 [System.Serializable]
@@ -21,8 +22,6 @@ public class PlayerCtrl : MonoBehaviour
     private float r = 0.0f;
     private float y = 0.0f;
 
-    private int DEXDexterity;
-
     private Transform tr;
     public float moveSpeed;
     public float rotSpeed = 80.0f;
@@ -34,17 +33,19 @@ public class PlayerCtrl : MonoBehaviour
 
     public FireCtrl fireC;
 
+    public Text MSpeedText;
+
 
 
     void OnEnable()
     {
         GameManager.OnItemChange += UpdateSetup;
+        GameManager.OnStatChange += UpdateSetup;
     }
 
     void UpdateSetup()
     {
         moveSpeed = GameManager.instance.gameData.speed;
-        DEXDexterity = GameManager.instance.gameData.Dexterity;
     }
 
     void Start()
@@ -59,6 +60,8 @@ public class PlayerCtrl : MonoBehaviour
         anim.Play();
 
         moveSpeed = GameManager.instance.gameData.speed;
+
+        MSpeedText = CanvasManager.instance.Speed;
     }
     
     void Update()
@@ -103,5 +106,12 @@ public class PlayerCtrl : MonoBehaviour
         {
             anim.CrossFade(playerAnim.Reload.name, 0.3f);
         }
+
+        UpdateSpeedText();
+    }
+
+    void UpdateSpeedText()
+    {
+        MSpeedText.text = string.Format("{0}", moveSpeed);
     }
 }

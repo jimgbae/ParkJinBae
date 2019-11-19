@@ -11,9 +11,10 @@ namespace DataInfo
         public float hp = 120.0f;                                                                   //Player 초기 생명
         public float damage = 25.0f;                                                                //총알의 데미지
         public float speed = 6.0f;                                                                  //이동 속도
-        public int Strength = 10;
-        public int Dexterity = 5;
-        public int Constitution = 5;
+        public int Strength = 10;                                                                   //힘(STR)
+        public int Dexterity = 5;                                                                   //민첩(DEX)
+        public int Constitution = 5;                                                                //채력(CON)
+        public int Status = 0;                                                                      //스텟 포인트
         public List<Item> equipItem = new List<Item>();                                             //취득한 아이템
     }
 

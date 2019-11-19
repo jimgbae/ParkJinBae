@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerLv : MonoBehaviour
 {
     //Player 레벨
-    public int Level;
+    public int Level = 1;
 
     //Player 경험치
     private float MaxEXP = 500.0f;
@@ -30,6 +30,7 @@ public class PlayerLv : MonoBehaviour
         ExpText = CanvasManager.instance.ExpText;
         //GameData에서 레벨 , 경험치 불러오기
         SaveEXP = GameManager.instance.gameData.exp;
+        currEXP = SaveEXP;
         LvSetting();
         
         currColor = initColor;
@@ -39,7 +40,7 @@ public class PlayerLv : MonoBehaviour
     {
         if (SaveEXP >= MaxEXP)
         {
-            Level = ((int)SaveEXP / (int)MaxEXP);
+            Level += ((int)SaveEXP / (int)MaxEXP);
             currEXP = (SaveEXP % MaxEXP);
             UpdateExpText();
         }
@@ -65,6 +66,7 @@ public class PlayerLv : MonoBehaviour
         if(currEXP >= MaxEXP)
         {
             Level++;
+            GameManager.instance.GetStatPoint();
             currEXP = 0;
             UpdateExpText();
         }

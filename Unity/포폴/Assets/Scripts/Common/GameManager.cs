@@ -41,8 +41,18 @@ public class GameManager : MonoBehaviour
     //Inventory의 CanvasGroup 컴포넌트 저장 변수
     public CanvasGroup invenCG;
 
-    //스텟 관리창 컴포넌트 저장 변수
+    //스텟창 컴포넌트 저장 변수
     public CanvasGroup StateCG;
+    //스텟 업그레이드 관리창 저장 변수
+    public CanvasGroup StatPointCG;
+    //스텟 포인트
+    private Text StatText;
+    //힘
+    private Text STRText;
+    //민첩
+    public Text DEXText;
+    //채력
+    public Text CONText;
 
     //Player가 Enemy를 죽인 횟수
     public int EnemyDieCount = 0;
@@ -63,6 +73,10 @@ public class GameManager : MonoBehaviour
 
     //StageManager 컴포넌트 저장 변수
     private StageManager stageM;
+
+    //Stat변화 시 발생시킬 이벤트 정의
+    public delegate void StatChangeDelegate();
+    public static event StatChangeDelegate OnStatChange;
 
 
     void Awake()
@@ -109,6 +123,7 @@ public class GameManager : MonoBehaviour
         gameData.Strength = data.Strength;
         gameData.Dexterity = data.Dexterity;
         gameData.Constitution = data.Constitution;
+        gameData.Status = data.Status;
         gameData.equipItem = data.equipItem;
 
         if (gameData.equipItem.Count > 0)
@@ -225,6 +240,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        StatText = CanvasManager.instance.Stat;
+        STRText = CanvasManager.instance.STR;
+        DEXText = CanvasManager.instance.DEX;
+        CONText = CanvasManager.instance.CON;
         stageM = GetComponent<StageManager>();
         //처음 인벤토리 비활성화
         OnInventoryOpen(false);
@@ -396,6 +415,7 @@ public class GameManager : MonoBehaviour
     public void PlayerDie()
     {
         gameData.killCount = 0;
+        gameData.exp = 0;
         SaveGameData();
         Reset();
         SceneManager.LoadScene("GameOver");
@@ -440,12 +460,95 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
+        UpdateText();
+
+        if (Input.GetKeyDown(KeyCode.I))
         {
             if (invenCG.alpha == 1.0f)
                 OnInventoryOpen(false);
             else
                 OnInventoryOpen(true);
         }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            if (StateCG.alpha == 1.0f)
+                OnStatOpen(false);
+            else
+                OnStatOpen(true);
+        }
+
+        if (StateCG.alpha == 1.0f && gameData.Status > 0)
+        {
+            OnPlusStat(true);
+        }
+        else
+            OnPlusStat(false);
+    }
+
+    public void GetStatPoint()
+    {
+        gameData.Status += 2;
+    }
+
+    public void PlusStatPoint(int Point)
+    {
+        switch (Point)
+        {
+            case 1:
+                gameData.Strength += 1;
+                gameData.Status--;
+                gameData.damage += 0.2f;
+                OnStatChange();
+                break;
+            case 2:
+                gameData.Dexterity += 1;
+                gameData.Status--;
+                gameData.speed += 0.05f;
+                OnStatChange();
+                break;
+            case 3:
+                gameData.Constitution += 1;
+                gameData.Status--;
+                gameData.hp += 5.0f;
+                OnStatChange();
+                break;
+        }
+        UpdateText();
+    }
+
+    public void OnPlusStat(bool isOpened)
+    {
+        StatPointCG.alpha = (isOpened) ? 1.0f : 0.0f;
+        StatPointCG.interactable = isOpened;
+        StatPointCG.blocksRaycasts = isOpened;
+    }
+
+    void UpdateText()
+    {
+        UpdateStatPointText();
+        UpdateSTRText();
+        UpdateDexText();
+        UpdateCONText();
+    }
+
+    void UpdateStatPointText()
+    {
+        StatText.text = string.Format("{0}", gameData.Status);
+    }
+
+    void UpdateSTRText()
+    {
+        STRText.text = string.Format("{0}", gameData.Strength);
+    }
+
+    void UpdateDexText()
+    {
+        DEXText.text = string.Format("{0}", gameData.Dexterity);
+    }
+
+    void UpdateCONText()
+    {
+        CONText.text = string.Format("{0}", gameData.Constitution);
     }
 }

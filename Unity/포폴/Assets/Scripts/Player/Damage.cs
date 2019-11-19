@@ -8,7 +8,6 @@ public class Damage : MonoBehaviour
     private const string bulletTag = "BULLET";
     private const string enemyTag = "ENEMY";
     private float initHp = 100.0f;
-    private int CONstitution;
     public float currHp;
     //BloodScreen 텍스처 저장 변수
     public Image bloodScreen;
@@ -28,6 +27,7 @@ public class Damage : MonoBehaviour
     void OnEnable()
     {
         GameManager.OnItemChange += UpdateSetup;
+        GameManager.OnStatChange += UpdateSetup;
     }
 
     void UpdateSetup()
@@ -98,15 +98,16 @@ public class Damage : MonoBehaviour
 
     void LateUpdate()
     {
-        if (GameManager.instance.isResetPlayer)
-        {
-            currHp = initHp;
-        }
     }
 
     void Update()
     {
         UpdateHPText();
+        
+        if (GameManager.instance.isResetPlayer)
+        {
+            currHp = initHp;
+        }
     }
 
     void UpdateHPText()

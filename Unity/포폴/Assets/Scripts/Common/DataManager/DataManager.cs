@@ -34,6 +34,7 @@ public class DataManager : MonoBehaviour
         data.Strength = gameData.Strength;
         data.Dexterity = gameData.Dexterity;
         data.Constitution = gameData.Constitution;
+        data.Status = gameData.Status;
         data.equipItem = gameData.equipItem;
 
         //BinaryFormatter를 사용해 파일에 데이터 기록

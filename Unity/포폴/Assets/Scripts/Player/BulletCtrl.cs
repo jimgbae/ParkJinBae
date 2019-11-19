@@ -11,14 +11,11 @@ public class BulletCtrl : MonoBehaviour
     public float lifeTime = 3.0f;
     public float _elapsedTime = 0.0f;
 
-    public int STRength;
-
     //컴포넌트 저장 변수
     private Transform tr;
     private Rigidbody rigid;
     private TrailRenderer trail;
 
-    private Text STRText;
     private Text DamageText;
 
 
@@ -29,21 +26,19 @@ public class BulletCtrl : MonoBehaviour
         trail = GetComponent<TrailRenderer>();
 
         damage = GameManager.instance.gameData.damage;
-        STRength = GameManager.instance.gameData.Strength;
-
-        damage += ((float)STRength * 0.15f);
     }
 
     void Start()
     {
         DamageText = CanvasManager.instance.Damage;
-        STRText = CanvasManager.instance.STR;
+        UpdateDMGText();
     }
 
     void OnEnable()
     {
         rigid.AddForce(transform.forward * speed);
         GameManager.OnItemChange += UpdateSetup;
+        GameManager.OnStatChange += UpdateSetup;
     }
 
     void UpdateSetup()
@@ -61,13 +56,7 @@ public class BulletCtrl : MonoBehaviour
 
     void Update()
     {
-        UpdateSTRText();
         UpdateDMGText();
-    }
-
-    void UpdateSTRText()
-    {
-        STRText.text = string.Format("{0}", STRength);
     }
 
     void UpdateDMGText()
