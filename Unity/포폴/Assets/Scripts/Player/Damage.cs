@@ -63,7 +63,7 @@ public class Damage : MonoBehaviour
 
             DisplayHpbar();
 
-            if(currHp <= 0.0f)
+            if (currHp <= 0.0f)
             {
                 PlayerDie();
             }
@@ -103,8 +103,8 @@ public class Damage : MonoBehaviour
     void Update()
     {
         UpdateHPText();
-        
-        if (GameManager.instance.isResetPlayer)
+
+        if (GameManager.instance.isGameOver == true)
         {
             currHp = initHp;
         }

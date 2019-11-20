@@ -188,7 +188,7 @@ public class FireCtrl : MonoBehaviour
 
     void LateUpdate()
     {
-        if(GameManager.instance.isResetPlayer)
+        if(GameManager.instance.isGameOver)
         {
             isReloading = false;
             remainingBullet = maxBullet;

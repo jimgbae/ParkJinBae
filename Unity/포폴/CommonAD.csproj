@@ -68,7 +68,6 @@
     <Compile Include="Assets\Scripts\Common\Drag.cs" />
     <Compile Include="Assets\Scripts\Common\Drop.cs" />
     <Compile Include="Assets\Scripts\Common\FollowCam.cs" />
-    <Compile Include="Assets\Scripts\Common\FPSCamera.cs" />
     <Compile Include="Assets\Scripts\Common\GameEndManager.cs" />
     <Compile Include="Assets\Scripts\Common\GameManager.cs" />
     <Compile Include="Assets\Scripts\Common\Shake.cs" />

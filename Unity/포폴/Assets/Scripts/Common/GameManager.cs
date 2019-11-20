@@ -67,16 +67,16 @@ public class GameManager : MonoBehaviour
     public delegate void ItemChangeDelegate();
     public static event ItemChangeDelegate OnItemChange;
 
+    //Stat변화 시 발생시킬 이벤트 정의
+    public delegate void StatChangeDelegate();
+    public static event StatChangeDelegate OnStatChange;
+
     //SlotList 게임오브젝트 저장 변수와 ItemList 하위에 있는 네 개의 아이템 저장 배열
     private GameObject slotList;
     public GameObject[] itemObjects;
 
     //StageManager 컴포넌트 저장 변수
     private StageManager stageM;
-
-    //Stat변화 시 발생시킬 이벤트 정의
-    public delegate void StatChangeDelegate();
-    public static event StatChangeDelegate OnStatChange;
 
     public CanvasGroup PauseCG;
 
@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
         }
 
         //KILL_COUNT 키로 저장된값 로드
-        KillCountText.text = "KILL " + gameData.killCount.ToString("0000");
+        KillCountText.text = string.Format("KILL {0}", gameData.killCount);
     }
 
     void SaveGameData()
@@ -413,6 +413,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerWin()
     {
+        OnItemChange();
         SaveGameData();
         Reset();
         SceneManager.LoadScene("GameClear");
@@ -422,6 +423,7 @@ public class GameManager : MonoBehaviour
     {
         gameData.killCount = 0;
         gameData.exp = 0;
+        OnItemChange();
         SaveGameData();
         Reset();
         SceneManager.LoadScene("GameOver");

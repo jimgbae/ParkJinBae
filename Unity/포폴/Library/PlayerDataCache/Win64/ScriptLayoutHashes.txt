@@ -29,7 +29,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.P
 201e3fde670b00545944bb3db215c80a UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 ed6314ef9666ed62a4be3bb8b88875c9 CommonAD.dll:.BarrelCtrl
 e7a73f5f78ba6445195ec23b74a1ce2d Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
-4ac6cab329d400c18a11c821e41f0aa8 CommonAD.dll:.CanvasManager
+11846b5f0a3487e956885486fd726071 CommonAD.dll:.CanvasManager
 b9cb017ea56fb8cc16d8f92ed0cb2146 EnemyAD.dll:.EnemyAI
 cf9f5cf2c3145a37ac07f00e50e460f9 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -147,7 +147,6 @@ b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 ac825e8a883a536c1bf5245b8a9afb1c Assembly-CSharp-Editor.dll:.ReadmeEditor
 45bc215ac02e7e1e80b64335dae47632 CommonAD.dll:.Shake
 1243d0a6a2977f905d62171659a543ef CommonAD.dll:.GameManager
-bf4621a837e24df9b4d30df97958e079 CommonAD.dll:.FPSCamera
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
 606460b1068caf251c1649b840ac450e EnemyAD.dll:.EnemyFOV
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
