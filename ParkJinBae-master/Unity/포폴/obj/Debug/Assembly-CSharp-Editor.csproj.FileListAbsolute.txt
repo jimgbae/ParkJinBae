@@ -1,0 +1,2 @@
+C:\work\ParkJinBae\Unity\포폴\obj\Debug\Assembly-CSharp-Editor.csprojAssemblyReference.cache
+C:\work\ParkJinBae\Unity\포폴\obj\Debug\Assembly-CSharp-Editor.csproj.CoreCompileInputs.cache

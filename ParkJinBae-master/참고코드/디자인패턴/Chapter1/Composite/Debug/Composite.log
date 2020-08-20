@@ -1,0 +1,4 @@
+﻿  Main.cpp
+c:\work\박진배\parkjinbae\참고코드\디자인패턴\chapter1\composite\main.cpp(5): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+c:\work\박진배\parkjinbae\참고코드\디자인패턴\chapter1\composite\main.cpp(69): error C2360: 'stritem' 초기화가 'case' 레이블에 의해 생략되었습니다.
+  c:\work\박진배\parkjinbae\참고코드\디자인패턴\chapter1\composite\main.cpp(67): note: 'stritem' 선언을 참조하십시오.

@@ -1,0 +1,12 @@
+D:\Development\C#\UnityWithCSharp\Event\bin\Debug\Event.exe
+D:\Development\C#\UnityWithCSharp\Event\bin\Debug\Event.pdb
+D:\Development\C#\UnityWithCSharp\Event\obj\Debug\Event.csprojAssemblyReference.cache
+D:\Development\C#\UnityWithCSharp\Event\obj\Debug\Event.csproj.CoreCompileInputs.cache
+D:\Development\C#\UnityWithCSharp\Event\obj\Debug\Event.exe
+D:\Development\C#\UnityWithCSharp\Event\obj\Debug\Event.pdb
+C:\work\박진배\ParkJinBae\PPT\Unity\C#\Code\Event\bin\Debug\Event.exe
+C:\work\박진배\ParkJinBae\PPT\Unity\C#\Code\Event\bin\Debug\Event.pdb
+C:\work\박진배\ParkJinBae\PPT\Unity\C#\Code\Event\obj\Debug\Event.csprojAssemblyReference.cache
+C:\work\박진배\ParkJinBae\PPT\Unity\C#\Code\Event\obj\Debug\Event.csproj.CoreCompileInputs.cache
+C:\work\박진배\ParkJinBae\PPT\Unity\C#\Code\Event\obj\Debug\Event.exe
+C:\work\박진배\ParkJinBae\PPT\Unity\C#\Code\Event\obj\Debug\Event.pdb
