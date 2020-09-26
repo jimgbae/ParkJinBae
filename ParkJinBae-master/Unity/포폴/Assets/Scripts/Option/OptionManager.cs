@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class OptionManager : MonoBehaviour
 {
-    public CanvasGroup KeyGuideCG;
+    public CanvasGroup ChatGuideCG;
+    public CanvasGroup TextCG;
 
     void Start()
     {
         OnKeyGuideCG(false);
+        OnOffTextCG(false);
     }
 
     public void OnBackBtn()
@@ -19,17 +21,32 @@ public class OptionManager : MonoBehaviour
 
     public void OnOffKeyGuide()
     {
-        if (KeyGuideCG.alpha == 1.0f)
+        if (ChatGuideCG.alpha == 1.0f)
             OnKeyGuideCG(false);
         else
             OnKeyGuideCG(true);
     }
-        
+
+    public void OnOffTextCG()
+    {
+        if (ChatGuideCG.alpha == 1.0f)
+            OnKeyGuideCG(false);
+        else
+            OnKeyGuideCG(true);
+    }
+
+    void CheckTextCG(bool isOpened)
+    {
+        TextCG.alpha = (isOpened) ? 1.0f : 0.0f;
+        TextCG.interactable = isOpened;
+        TextCG.blocksRaycasts = isOpened;
+    }
+
 
     void OnKeyGuideCG(bool isOpened)
     {
-        KeyGuideCG.alpha = (isOpened) ? 1.0f : 0.0f;
-        KeyGuideCG.interactable = isOpened;
-        KeyGuideCG.blocksRaycasts = isOpened;
+        ChatGuideCG.alpha = (isOpened) ? 1.0f : 0.0f;
+        ChatGuideCG.interactable = isOpened;
+        ChatGuideCG.blocksRaycasts = isOpened;
     }
 }
