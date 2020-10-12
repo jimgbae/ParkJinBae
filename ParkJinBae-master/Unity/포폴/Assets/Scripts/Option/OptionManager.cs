@@ -11,28 +11,11 @@ public class OptionManager : MonoBehaviour
     void Start()
     {
         OnKeyGuideCG(false);
-        OnOffTextCG(false);
     }
 
     public void OnBackBtn()
     {
         SceneManager.LoadScene("Main");
-    }
-
-    public void OnOffKeyGuide()
-    {
-        if (ChatGuideCG.alpha == 1.0f)
-            OnKeyGuideCG(false);
-        else
-            OnKeyGuideCG(true);
-    }
-
-    public void OnOffTextCG()
-    {
-        if (ChatGuideCG.alpha == 1.0f)
-            OnKeyGuideCG(false);
-        else
-            OnKeyGuideCG(true);
     }
 
     void CheckTextCG(bool isOpened)
